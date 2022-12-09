@@ -1,0 +1,37 @@
+Window 2 type:10	Window 3 type:5	Window 4 type:6	Window 5 type:7	Window 6 type:17
+1 type:1	Window 3 type:1	Window 4 type:1	Window 5 type:1	Window 6 type:1
+Pre_data:00 83 	type:01
+Pre_data:00 86 	type:01
+Pre_data:01 0A 	type:01
+Pre_data:03 AA 	type:01
+Pre_data:04 0A 	type:01
+Pre_data:07 0A 	type:01
+Pre_data:0A 0A 	type:01
+Pre_data:0D 0A 	type:01
+Pre_data:10 0A 	type:12
+Pre_data:01	type:01
+ID:000A 	type:01
+AB
+ID:0021 	type:01
+02 0C 00 
+01: 00 00 00 
+01: 20 20 32 
+01: 02 01 05 
+01: 00 02 13 
+01: 19 32 13 
+02 
+01: 19 32 12 
+01 
+***窗口统计信息***
+008500 020A00 02AA00 030A00
+050A00 090A00 0A0A00 0B0A00
+0F0A00 01BC02
+010200 860000 0A0000 AA0000 0A1004 820001 BC0200
+020000 000100
+000002 040119 010000
+00020C 000002 021932 011932
+020C00 000213 193213 193214 193216 193218 193220
+193215
+type:1 type:1
+type:1	type:01
+00 

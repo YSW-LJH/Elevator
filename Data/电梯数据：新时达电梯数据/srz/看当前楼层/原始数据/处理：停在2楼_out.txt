@@ -1,0 +1,307 @@
+--------------------ID信息--------------------
+
+ID_num:14
+
+ID:0008	type:45	Byte 1 type:19	Byte 2 type:9	Byte 3 type:3	Byte 4 type:3	Byte 5 type:3	Byte 6 type:4	Byte 7 type:6	Byte 8 type:15
+ID:0009	type:01	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:1	Byte 6 type:1	Byte 7 type:1	Byte 8 type:1
+ID:000A	type:01	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:1	Byte 6 type:1	Byte 7 type:1	Byte 8 type:1
+ID:001F	type:01	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:1	Byte 6 type:1	Byte 7 type:1	Byte 8 type:1
+ID:0020	type:01	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:1	Byte 6 type:1	Byte 7 type:1	Byte 8 type:1
+ID:0021	type:01	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:1	Byte 6 type:1	Byte 7 type:1	Byte 8 type:1
+ID:0022	type:01	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:1	Byte 6 type:1	Byte 7 type:1	Byte 8 type:1
+
+------------------ID和头两个字节------------------
+
+ID:0008	type:45
+Pre_data:00 01 	type:01
+Pre_data:00 83 	type:01
+Pre_data:00 84 	type:01
+Pre_data:00 85 	type:01
+Pre_data:00 86 	type:01
+Pre_data:01 0A 	type:01
+Pre_data:01 AA 	type:01
+Pre_data:02 0A 	type:01
+Pre_data:02 AA 	type:01
+Pre_data:03 0A 	type:01
+Pre_data:03 AA 	type:01
+Pre_data:04 0A 	type:01
+Pre_data:04 AA 	type:01
+Pre_data:05 0A 	type:01
+Pre_data:06 0A 	type:01
+Pre_data:07 0A 	type:01
+Pre_data:08 0A 	type:01
+Pre_data:09 0A 	type:01
+Pre_data:0A 0A 	type:07
+Pre_data:0B 0A 	type:01
+Pre_data:0C 0A 	type:01
+Pre_data:0D 0A 	type:01
+Pre_data:0E 0A 	type:01
+Pre_data:0F 0A 	type:01
+Pre_data:10 0A 	type:01
+Pre_data:14 0A 	type:12
+Pre_data:20 82 	type:01
+Pre_data:01 BC 	type:01
+
+ID:0009	type:01
+Pre_data:42 87 	type:01
+
+ID:000A	type:01
+Pre_data:00 7E 	type:01
+
+ID:001F	type:01
+Pre_data:00 AB 	type:01
+
+ID:0020	type:01
+Pre_data:00 AB 	type:01
+
+ID:0021	type:01
+Pre_data:00 AB 	type:01
+
+ID:0022	type:01
+Pre_data:00 AB 	type:01
+
+
+-------------ID，头两个字节以及其他信息------------
+
+**********************************************
+ID:0008	type:45
+
+01: 02 00 00 02 0C 00 
+Pre_data:00 01 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:00 83 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:00 84 	type:01
+01: 00 00 00 20 20 32 
+Pre_data:00 85 	type:01
+01: 00 00 00 02 01 05 
+Pre_data:00 86 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:01 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:01 AA 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:02 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:02 AA 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:03 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:03 AA 	type:01
+01: 00 00 00 00 02 13 
+Pre_data:04 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:04 AA 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:05 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:06 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:07 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:08 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:09 0A 	type:01
+01: 00 00 02 19 32 13 
+02: 00 00 02 19 32 14 
+03: 00 00 02 19 32 16 
+04: 00 00 02 19 32 18 
+05: 00 00 02 19 32 20 
+06: 00 00 02 19 32 21 
+07: 00 00 02 19 32 23 
+Pre_data:0A 0A 	type:07
+01: 00 00 00 00 00 00 
+Pre_data:0B 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:0C 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:0D 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:0E 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:0F 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:10 0A 	type:01
+01: 10 04 01 19 32 12 
+02: 10 04 01 19 32 13 
+03: 10 04 01 19 32 14 
+04: 10 04 01 19 32 15 
+05: 10 04 01 19 32 16 
+06: 10 04 01 19 32 17 
+07: 10 04 01 19 32 18 
+08: 10 04 01 19 32 19 
+09: 10 04 01 19 32 20 
+10: 10 04 01 19 32 21 
+11: 10 04 01 19 32 22 
+12: 10 04 01 19 32 23 
+Pre_data:14 0A 	type:12
+01: 00 01 00 00 00 00 
+Pre_data:20 82 	type:01
+01: 02 00 00 00 00 00 
+Pre_data:01 BC 	type:01
+
+***字节统计信息***
+Byte 1 type:19
+ 00 01 02 03 04 05 06 07 08 09
+ 0A 0B 0C 0D 0E 0F 10 14 20
+Byte 2 type:9
+ 01 0A 82 83 84 85 86 AA BC
+Byte 3 type:3
+ 00 02 10
+Byte 4 type:3
+ 00 01 04
+Byte 5 type:3
+ 00 01 02
+Byte 6 type:4
+ 00 02 19 20
+Byte 7 type:6
+ 00 01 02 0C 20 32
+Byte 8 type:15
+ 00 05 12 13 14 15 16 17 18 19
+ 20 21 22 23 32
+
+**********************************************
+ID:0009	type:01
+
+01: 00 00 00 00 00 00 
+Pre_data:42 87 	type:01
+
+***字节统计信息***
+Byte 1 type:1
+ 42
+Byte 2 type:1
+ 87
+Byte 3 type:1
+ 00
+Byte 4 type:1
+ 00
+Byte 5 type:1
+ 00
+Byte 6 type:1
+ 00
+Byte 7 type:1
+ 00
+Byte 8 type:1
+ 00
+
+**********************************************
+ID:000A	type:01
+
+01: 00 00 00 00 00 00 
+Pre_data:00 7E 	type:01
+
+***字节统计信息***
+Byte 1 type:1
+ 00
+Byte 2 type:1
+ 7E
+Byte 3 type:1
+ 00
+Byte 4 type:1
+ 00
+Byte 5 type:1
+ 00
+Byte 6 type:1
+ 00
+Byte 7 type:1
+ 00
+Byte 8 type:1
+ 00
+
+**********************************************
+ID:001F	type:01
+
+01: 01 00 00 00 00 00 
+Pre_data:00 AB 	type:01
+
+***字节统计信息***
+Byte 1 type:1
+ 00
+Byte 2 type:1
+ AB
+Byte 3 type:1
+ 01
+Byte 4 type:1
+ 00
+Byte 5 type:1
+ 00
+Byte 6 type:1
+ 00
+Byte 7 type:1
+ 00
+Byte 8 type:1
+ 00
+
+**********************************************
+ID:0020	type:01
+
+01: 02 00 00 00 00 00 
+Pre_data:00 AB 	type:01
+
+***字节统计信息***
+Byte 1 type:1
+ 00
+Byte 2 type:1
+ AB
+Byte 3 type:1
+ 02
+Byte 4 type:1
+ 00
+Byte 5 type:1
+ 00
+Byte 6 type:1
+ 00
+Byte 7 type:1
+ 00
+Byte 8 type:1
+ 00
+
+**********************************************
+ID:0021	type:01
+
+01: 03 00 00 00 00 00 
+Pre_data:00 AB 	type:01
+
+***字节统计信息***
+Byte 1 type:1
+ 00
+Byte 2 type:1
+ AB
+Byte 3 type:1
+ 03
+Byte 4 type:1
+ 00
+Byte 5 type:1
+ 00
+Byte 6 type:1
+ 00
+Byte 7 type:1
+ 00
+Byte 8 type:1
+ 00
+
+**********************************************
+ID:0022	type:01
+
+01: 04 00 00 00 00 00 
+Pre_data:00 AB 	type:01
+
+***字节统计信息***
+Byte 1 type:1
+ 00
+Byte 2 type:1
+ AB
+Byte 3 type:1
+ 04
+Byte 4 type:1
+ 00
+Byte 5 type:1
+ 00
+Byte 6 type:1
+ 00
+Byte 7 type:1
+ 00
+Byte 8 type:1
+ 00
+
+

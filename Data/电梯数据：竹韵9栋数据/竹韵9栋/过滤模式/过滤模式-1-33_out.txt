@@ -1,0 +1,661 @@
+--------------------ID信息--------------------
+
+ID_num:19
+
+ID:1006	type:21	Byte 1 type:2	Byte 2 type:1	Byte 3 type:4	Byte 4 type:2	Byte 5 type:5	Byte 6 type:21	Byte 7 type:0	Byte 8 type:0
+ID:1806	type:06	Byte 1 type:2	Byte 2 type:1	Byte 3 type:2	Byte 4 type:2	Byte 5 type:4	Byte 6 type:6	Byte 7 type:0	Byte 8 type:0
+ID:1C15	type:02	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:2	Byte 6 type:0	Byte 7 type:0	Byte 8 type:0
+ID:2005	type:04	Byte 1 type:2	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:2	Byte 6 type:0	Byte 7 type:0	Byte 8 type:0
+ID:2494	type:01	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:0	Byte 6 type:0	Byte 7 type:0	Byte 8 type:0
+ID:2498	type:04	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:3	Byte 5 type:3	Byte 6 type:3	Byte 7 type:2	Byte 8 type:2
+ID:24A6	type:01	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:1	Byte 6 type:1	Byte 7 type:0	Byte 8 type:0
+ID:5007	type:16	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:10	Byte 5 type:4	Byte 6 type:1	Byte 7 type:2	Byte 8 type:0
+ID:6007	type:16	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:10	Byte 5 type:4	Byte 6 type:1	Byte 7 type:2	Byte 8 type:0
+ID:7407	type:02	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:0	Byte 6 type:1	Byte 7 type:1	Byte 8 type:0
+ID:7408	type:35	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:4	Byte 5 type:33	Byte 6 type:10	Byte 7 type:4	Byte 8 type:1
+ID:7413	type:02	Byte 1 type:1	Byte 2 type:1	Byte 3 type:2	Byte 4 type:0	Byte 5 type:0	Byte 6 type:0	Byte 7 type:0	Byte 8 type:0
+ID:7415	type:01	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:1	Byte 6 type:0	Byte 7 type:0	Byte 8 type:0
+ID:7425	type:04	Byte 1 type:1	Byte 2 type:1	Byte 3 type:2	Byte 4 type:1	Byte 5 type:2	Byte 6 type:0	Byte 7 type:0	Byte 8 type:0
+ID:7486	type:20	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:4	Byte 5 type:13	Byte 6 type:5	Byte 7 type:0	Byte 8 type:0
+ID:7496	type:20	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:4	Byte 5 type:13	Byte 6 type:5	Byte 7 type:0	Byte 8 type:0
+ID:7497	type:04	Byte 1 type:2	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:2	Byte 6 type:1	Byte 7 type:1	Byte 8 type:0
+ID:7814	type:01	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:0	Byte 6 type:0	Byte 7 type:0	Byte 8 type:0
+ID:7816	type:04	Byte 1 type:1	Byte 2 type:1	Byte 3 type:1	Byte 4 type:2	Byte 5 type:2	Byte 6 type:4	Byte 7 type:0	Byte 8 type:0
+
+------------------ID和头两个字节------------------
+
+ID:1006	type:21
+Pre_data:15 00 	type:01
+Pre_data:1D 00 	type:20
+
+ID:1806	type:06
+Pre_data:14 00 	type:04
+Pre_data:15 00 	type:02
+
+ID:1C15	type:02
+Pre_data:15 00 	type:02
+
+ID:2005	type:04
+Pre_data:15 00 	type:02
+Pre_data:19 00 	type:02
+
+ID:2494	type:01
+Pre_data:0D 00 	type:01
+
+ID:2498	type:04
+Pre_data:0D 00 	type:04
+
+ID:24A6	type:01
+Pre_data:0D 00 	type:01
+
+ID:5007	type:16
+Pre_data:1D 00 	type:16
+
+ID:6007	type:16
+Pre_data:1D 00 	type:16
+
+ID:7407	type:02
+Pre_data:1D 00 	type:02
+
+ID:7408	type:35
+Pre_data:1D 00 	type:35
+
+ID:7413	type:02
+Pre_data:1D 00 	type:02
+
+ID:7415	type:01
+Pre_data:1D 00 	type:01
+
+ID:7425	type:04
+Pre_data:1D 00 	type:04
+
+ID:7486	type:20
+Pre_data:0D 00 	type:20
+
+ID:7496	type:20
+Pre_data:0D 00 	type:20
+
+ID:7497	type:04
+Pre_data:05 00 	type:02
+Pre_data:09 00 	type:02
+
+ID:7814	type:01
+Pre_data:11 00 	type:01
+
+ID:7816	type:04
+Pre_data:11 00 	type:04
+
+
+-------------ID，头两个字节以及其他信息------------
+
+**********************************************
+ID:1006	type:21
+
+01: 64 04 00 63 
+Pre_data:15 00 	type:01
+01: 71 FF 00 62 
+02: 71 FF 10 56 
+03: 73 FF 04 66 
+04: 73 FF 08 58 
+05: 73 FF 08 59 
+06: 73 FF 08 5A 
+07: 73 FF 08 5B 
+08: 73 FF 08 5C 
+09: 73 FF 08 5D 
+10: 73 FF 08 5E 
+11: 73 FF 08 5F 
+12: 73 FF 08 60 
+13: 73 FF 08 61 
+14: 73 FF 08 64 
+15: 73 FF 04 67 
+16: 73 FF 08 68 
+17: 73 FF 08 69 
+18: 73 FF 08 6A 
+19: E9 01 00 57 
+20: E9 01 01 65 
+Pre_data:1D 00 	type:20
+
+***字节统计信息***
+Byte 1 type:2
+ 15 1D
+Byte 2 type:1
+ 00
+Byte 3 type:4
+ 64 71 73 E9
+Byte 4 type:2
+ 01 04
+Byte 5 type:5
+ 00 01 04 08 10
+Byte 6 type:21
+ 56 57 58 59 5A 5B 5C 5D 5E 5F
+ 60 61 62 63 64 65 66 67 68 69
+ 6A
+
+
+
+**********************************************
+ID:1806	type:06
+
+01: 34 08 E0 2F 
+02: 34 08 E8 30 
+03: 34 08 E0 31 
+04: 34 08 E8 32 
+Pre_data:14 00 	type:04
+01: 32 01 30 34 
+02: 32 01 31 33 
+Pre_data:15 00 	type:02
+
+***字节统计信息***
+Byte 1 type:2
+ 14 15
+Byte 2 type:1
+ 00
+Byte 3 type:2
+ 32 34
+Byte 4 type:2
+ 01 08
+Byte 5 type:4
+ 30 31 E0 E8
+Byte 6 type:6
+ 2F 30 31 32 33 34
+
+
+
+**********************************************
+ID:1C15	type:02
+
+01: 24 04 00 
+02: 24 04 04 
+Pre_data:15 00 	type:02
+
+***字节统计信息***
+Byte 1 type:1
+ 15
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ 24
+Byte 4 type:1
+ 04
+Byte 5 type:2
+ 00 04
+
+
+
+
+**********************************************
+ID:2005	type:04
+
+01: 01 04 00 
+02: 01 04 04 
+Pre_data:15 00 	type:02
+01: 01 04 00 
+02: 01 04 04 
+Pre_data:19 00 	type:02
+
+***字节统计信息***
+Byte 1 type:2
+ 15 19
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ 01
+Byte 4 type:1
+ 04
+Byte 5 type:2
+ 00 04
+
+
+
+
+**********************************************
+ID:2494	type:01
+
+01: AE 10 
+Pre_data:0D 00 	type:01
+
+***字节统计信息***
+Byte 1 type:1
+ 0D
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ AE
+Byte 4 type:1
+ 10
+
+
+
+
+
+**********************************************
+ID:2498	type:04
+
+01: AE 0D 22 15 00 00 
+02: AE 10 0D 00 AE 10 
+03: AE 31 F6 08 00 00 
+04: AE 0D FF FF 00 00 
+Pre_data:0D 00 	type:04
+
+***字节统计信息***
+Byte 1 type:1
+ 0D
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ AE
+Byte 4 type:3
+ 0D 10 31
+Byte 5 type:3
+ 0D 22 F6
+Byte 6 type:3
+ 00 08 15
+Byte 7 type:2
+ 00 AE
+Byte 8 type:2
+ 00 10
+
+**********************************************
+ID:24A6	type:01
+
+01: AE 0B 23 00 
+Pre_data:0D 00 	type:01
+
+***字节统计信息***
+Byte 1 type:1
+ 0D
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ AE
+Byte 4 type:1
+ 0B
+Byte 5 type:1
+ 23
+Byte 6 type:1
+ 00
+
+
+
+**********************************************
+ID:5007	type:16
+
+01: 40 64 00 00 10 
+02: 40 66 00 00 10 
+03: 40 68 00 00 10 
+04: 40 6A 00 00 10 
+05: 40 6C 00 00 10 
+06: 40 6E 00 00 10 
+07: 40 70 00 00 10 
+08: 40 72 00 00 10 
+09: 40 9E 64 00 10 
+10: 40 66 66 00 00 
+11: 40 9E 66 00 10 
+12: 40 9E D8 00 10 
+13: 40 D8 00 00 10 
+14: 40 D8 64 00 10 
+15: 40 D8 66 00 10 
+16: 40 D8 D8 00 10 
+Pre_data:1D 00 	type:16
+
+***字节统计信息***
+Byte 1 type:1
+ 1D
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ 40
+Byte 4 type:10
+ 64 66 68 6A 6C 6E 70 72 9E D8
+Byte 5 type:4
+ 00 64 66 D8
+Byte 6 type:1
+ 00
+Byte 7 type:2
+ 00 10
+
+
+**********************************************
+ID:6007	type:16
+
+01: 40 64 00 00 10 
+02: 40 66 00 00 10 
+03: 40 68 00 00 10 
+04: 40 6A 00 00 10 
+05: 40 6C 00 00 10 
+06: 40 6E 00 00 10 
+07: 40 70 00 00 10 
+08: 40 72 00 00 10 
+09: 40 9E 64 00 10 
+10: 40 66 66 00 00 
+11: 40 9E 66 00 10 
+12: 40 9E D8 00 10 
+13: 40 D8 00 00 10 
+14: 40 D8 64 00 10 
+15: 40 D8 66 00 10 
+16: 40 D8 D8 00 10 
+Pre_data:1D 00 	type:16
+
+***字节统计信息***
+Byte 1 type:1
+ 1D
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ 40
+Byte 4 type:10
+ 64 66 68 6A 6C 6E 70 72 9E D8
+Byte 5 type:4
+ 00 64 66 D8
+Byte 6 type:1
+ 00
+Byte 7 type:2
+ 00 10
+
+
+**********************************************
+ID:7407	type:02
+
+01: 48 FF 00 FF 00 
+02: 48 FF 00 FF 02 
+Pre_data:1D 00 	type:02
+
+***字节统计信息***
+Byte 1 type:1
+ 1D
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ 48
+Byte 4 type:1
+ FF
+
+Byte 6 type:1
+ FF
+Byte 7 type:1
+ 00
+
+
+**********************************************
+ID:7408	type:35
+
+01: 47 00 23 66 66 00 
+02: 47 01 23 66 66 00 
+03: 47 10 03 D8 00 00 
+04: 47 11 03 D8 00 00 
+05: 47 11 04 64 00 00 
+06: 47 11 05 66 00 00 
+07: 47 11 06 68 00 00 
+08: 47 11 07 6A 00 00 
+09: 47 11 08 6C 00 00 
+10: 47 11 09 6E 00 00 
+11: 47 11 0A 70 00 00 
+12: 47 11 0B 72 00 00 
+13: 47 11 0C 9E D8 00 
+14: 47 11 0D D8 D8 00 
+15: 47 11 0E 64 D8 00 
+16: 47 11 0F 66 D8 00 
+17: 47 11 10 68 D8 00 
+18: 47 11 11 6A D8 00 
+19: 47 11 12 6C D8 00 
+20: 47 11 13 6E D8 00 
+21: 47 11 14 70 D8 00 
+22: 47 11 15 72 D8 00 
+23: 47 11 16 9E 64 00 
+24: 47 11 17 D8 64 00 
+25: 47 11 18 64 64 00 
+26: 47 11 19 66 64 00 
+27: 47 11 1A 68 64 00 
+28: 47 11 1B 6A 64 00 
+29: 47 11 1C 6C 64 00 
+30: 47 11 1D 6E 64 00 
+31: 47 11 1E 70 64 00 
+32: 47 11 1F 72 64 00 
+33: 47 11 20 9E 66 00 
+34: 47 11 21 D8 66 00 
+35: 47 11 22 64 66 00 
+Pre_data:1D 00 	type:35
+
+***字节统计信息***
+Byte 1 type:1
+ 1D
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ 47
+Byte 4 type:4
+ 00 01 10 11
+Byte 5 type:33
+ 03 04 05 06 07 08 09 0A 0B 0C
+ 0D 0E 0F 10 11 12 13 14 15 16
+ 17 18 19 1A 1B 1C 1D 1E 1F 20
+ 21 22 23
+Byte 6 type:10
+ 64 66 68 6A 6C 6E 70 72 9E D8
+Byte 7 type:4
+ 00 64 66 D8
+Byte 8 type:1
+ 00
+
+**********************************************
+ID:7413	type:02
+
+01: 41 
+02: 42 
+Pre_data:1D 00 	type:02
+
+***字节统计信息***
+Byte 1 type:1
+ 1D
+Byte 2 type:1
+ 00
+Byte 3 type:2
+ 41 42
+
+
+
+
+
+
+**********************************************
+ID:7415	type:01
+
+01: 40 32 87 
+Pre_data:1D 00 	type:01
+
+***字节统计信息***
+Byte 1 type:1
+ 1D
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ 40
+Byte 4 type:1
+ 32
+Byte 5 type:1
+ 87
+
+
+
+
+**********************************************
+ID:7425	type:04
+
+01: 20 FF 04 
+02: 20 FF 08 
+03: 50 FF 04 
+04: 50 FF 08 
+Pre_data:1D 00 	type:04
+
+***字节统计信息***
+Byte 1 type:1
+ 1D
+Byte 2 type:1
+ 00
+Byte 3 type:2
+ 20 50
+Byte 4 type:1
+ FF
+Byte 5 type:2
+ 00 04
+
+
+
+
+**********************************************
+ID:7486	type:20
+
+01: AE 03 32 00 
+02: AE 03 33 00 
+03: AE 03 34 00 
+04: AE 03 35 00 
+05: AE 03 36 00 
+06: AE 03 37 00 
+07: AE 03 38 00 
+08: AE 03 39 00 
+09: AE 03 4F 32 
+10: AE 03 4F 33 
+11: AE 03 4F 6C 
+12: AE 03 6C 00 
+13: AE 03 6C 32 
+14: AE 03 6C 33 
+15: AE 03 6C 6C 
+16: AE 04 00 00 
+17: AE 04 01 00 
+18: AE 05 00 00 
+19: AE 05 00 02 
+20: AE 0B 23 00 
+Pre_data:0D 00 	type:20
+
+***字节统计信息***
+Byte 1 type:1
+ 0D
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ AE
+Byte 4 type:4
+ 03 04 05 0B
+Byte 5 type:13
+ 00 01 23 32 33 34 35 36 37 38
+ 39 4F 6C
+Byte 6 type:5
+ 00 02 32 33 6C
+
+
+
+**********************************************
+ID:7496	type:20
+
+01: AE 03 32 00 
+02: AE 03 33 00 
+03: AE 03 34 00 
+04: AE 03 35 00 
+05: AE 03 36 00 
+06: AE 03 37 00 
+07: AE 03 38 00 
+08: AE 03 39 00 
+09: AE 03 4F 32 
+10: AE 03 4F 33 
+11: AE 03 4F 6C 
+12: AE 03 6C 00 
+13: AE 03 6C 32 
+14: AE 03 6C 33 
+15: AE 03 6C 6C 
+16: AE 04 00 00 
+17: AE 04 01 00 
+18: AE 05 00 00 
+19: AE 05 00 02 
+20: AE 0B 23 00 
+Pre_data:0D 00 	type:20
+
+***字节统计信息***
+Byte 1 type:1
+ 0D
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ AE
+Byte 4 type:4
+ 03 04 05 0B
+Byte 5 type:13
+ 00 01 23 32 33 34 35 36 37 38
+ 39 4F 6C
+Byte 6 type:5
+ 00 02 32 33 6C
+
+
+
+**********************************************
+ID:7497	type:04
+
+01: AE 40 00 00 00 
+02: AE 40 01 00 00 
+Pre_data:05 00 	type:02
+01: AE 40 00 00 00 
+02: AE 40 01 00 00 
+Pre_data:09 00 	type:02
+
+***字节统计信息***
+Byte 1 type:2
+ 05 09
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ AE
+Byte 4 type:1
+ 40
+Byte 5 type:2
+ 00 01
+Byte 6 type:1
+ 00
+Byte 7 type:1
+ 00
+
+
+**********************************************
+ID:7814	type:01
+
+01: FA 04 
+Pre_data:11 00 	type:01
+
+***字节统计信息***
+Byte 1 type:1
+ 11
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ FA
+Byte 4 type:1
+ 04
+
+
+
+
+
+**********************************************
+ID:7816	type:04
+
+01: 50 0B 0B 03 
+02: 50 0B 0D 00 
+03: 50 0B 0B 7F 
+04: 50 0C 0B FA 
+Pre_data:11 00 	type:04
+
+***字节统计信息***
+Byte 1 type:1
+ 11
+Byte 2 type:1
+ 00
+Byte 3 type:1
+ 50
+Byte 4 type:2
+ 0B 0C
+Byte 5 type:2
+ 0B 0D
+Byte 6 type:4
+ 00 03 7F FA
+
+
+
+

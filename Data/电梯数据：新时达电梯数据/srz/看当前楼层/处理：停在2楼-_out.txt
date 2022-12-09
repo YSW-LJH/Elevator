@@ -1,0 +1,294 @@
+--------------------ID信息--------------------
+
+ID_num:28
+
+ID:0008	type:45	Window 1 type:28	Window 2 type:10	Window 3 type:5	Window 4 type:6	Window 5 type:7	Window 6 type:17
+ID:0009	type:01	Window 1 type:1	Window 2 type:1	Window 3 type:1	Window 4 type:1	Window 5 type:1	Window 6 type:1
+ID:000A	type:01	Window 1 type:1	Window 2 type:1	Window 3 type:1	Window 4 type:1	Window 5 type:1	Window 6 type:1
+ID:001F	type:01	Window 1 type:1	Window 2 type:1	Window 3 type:1	Window 4 type:1	Window 5 type:1	Window 6 type:1
+ID:0020	type:01	Window 1 type:1	Window 2 type:1	Window 3 type:1	Window 4 type:1	Window 5 type:1	Window 6 type:1
+ID:0021	type:01	Window 1 type:1	Window 2 type:1	Window 3 type:1	Window 4 type:1	Window 5 type:1	Window 6 type:1
+ID:0022	type:01	Window 1 type:1	Window 2 type:1	Window 3 type:1	Window 4 type:1	Window 5 type:1	Window 6 type:1
+
+------------------ID和头两个字节------------------
+
+ID:0008	type:45
+Pre_data:00 01 	type:01
+Pre_data:00 83 	type:01
+Pre_data:00 84 	type:01
+Pre_data:00 85 	type:01
+Pre_data:00 86 	type:01
+Pre_data:01 0A 	type:01
+Pre_data:01 AA 	type:01
+Pre_data:02 0A 	type:01
+Pre_data:02 AA 	type:01
+Pre_data:03 0A 	type:01
+Pre_data:03 AA 	type:01
+Pre_data:04 0A 	type:01
+Pre_data:04 AA 	type:01
+Pre_data:05 0A 	type:01
+Pre_data:06 0A 	type:01
+Pre_data:07 0A 	type:01
+Pre_data:08 0A 	type:01
+Pre_data:09 0A 	type:01
+Pre_data:0A 0A 	type:07
+Pre_data:0B 0A 	type:01
+Pre_data:0C 0A 	type:01
+Pre_data:0D 0A 	type:01
+Pre_data:0E 0A 	type:01
+Pre_data:0F 0A 	type:01
+Pre_data:10 0A 	type:01
+Pre_data:14 0A 	type:12
+Pre_data:20 82 	type:01
+Pre_data:01 BC 	type:01
+
+ID:0009	type:01
+Pre_data:42 87 	type:01
+
+ID:000A	type:01
+Pre_data:00 7E 	type:01
+
+ID:001F	type:01
+Pre_data:00 AB 	type:01
+
+ID:0020	type:01
+Pre_data:00 AB 	type:01
+
+ID:0021	type:01
+Pre_data:00 AB 	type:01
+
+ID:0022	type:01
+Pre_data:00 AB 	type:01
+
+
+-------------ID，头两个字节以及其他信息------------
+
+**********************************************
+ID:0008	type:45
+
+01: 02 00 00 02 0C 00 
+Pre_data:00 01 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:00 83 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:00 84 	type:01
+01: 00 00 00 20 20 32 
+Pre_data:00 85 	type:01
+01: 00 00 00 02 01 05 
+Pre_data:00 86 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:01 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:01 AA 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:02 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:02 AA 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:03 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:03 AA 	type:01
+01: 00 00 00 00 02 13 
+Pre_data:04 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:04 AA 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:05 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:06 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:07 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:08 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:09 0A 	type:01
+01: 00 00 02 19 32 13 
+02: 00 00 02 19 32 14 
+03: 00 00 02 19 32 16 
+04: 00 00 02 19 32 18 
+05: 00 00 02 19 32 20 
+06: 00 00 02 19 32 21 
+07: 00 00 02 19 32 23 
+Pre_data:0A 0A 	type:07
+01: 00 00 00 00 00 00 
+Pre_data:0B 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:0C 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:0D 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:0E 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:0F 0A 	type:01
+01: 00 00 00 00 00 00 
+Pre_data:10 0A 	type:01
+01: 10 04 01 19 32 12 
+02: 10 04 01 19 32 13 
+03: 10 04 01 19 32 14 
+04: 10 04 01 19 32 15 
+05: 10 04 01 19 32 16 
+06: 10 04 01 19 32 17 
+07: 10 04 01 19 32 18 
+08: 10 04 01 19 32 19 
+09: 10 04 01 19 32 20 
+10: 10 04 01 19 32 21 
+11: 10 04 01 19 32 22 
+12: 10 04 01 19 32 23 
+Pre_data:14 0A 	type:12
+01: 00 01 00 00 00 00 
+Pre_data:20 82 	type:01
+01: 02 00 00 00 00 00 
+Pre_data:01 BC 	type:01
+
+***窗口统计信息***
+Window 1 type:28
+ 000102 008300 008400 008500 008600 010A00 01AA00 020A00 02AA00 030A00
+ 03AA00 040A00 04AA00 050A00 060A00 070A00 080A00 090A00 0A0A00 0B0A00
+ 0C0A00 0D0A00 0E0A00 0F0A00 100A00 140A10 208200 01BC02
+Window 2 type:10
+ 010200 830000 840000 850000 860000 0A0000 AA0000 0A1004 820001 BC0200
+Window 3 type:5
+ 020000 000000 000002 100401 000100
+Window 4 type:6
+ 000002 000000 000020 000219 040119 010000
+Window 5 type:7
+ 00020C 000000 002020 000201 000002 021932 011932
+Window 6 type:17
+ 020C00 000000 202032 020105 000213 193213 193214 193216 193218 193220
+ 193221 193223 193212 193215 193217 193219 193222
+
+
+
+**********************************************
+ID:0009	type:01
+
+01: 00 00 00 00 00 00 
+Pre_data:42 87 	type:01
+
+***窗口统计信息***
+Window 1 type:1
+ 428700
+Window 2 type:1
+ 870000
+Window 3 type:1
+ 000000
+Window 4 type:1
+ 000000
+Window 5 type:1
+ 000000
+Window 6 type:1
+ 000000
+
+
+
+**********************************************
+ID:000A	type:01
+
+01: 00 00 00 00 00 00 
+Pre_data:00 7E 	type:01
+
+***窗口统计信息***
+Window 1 type:1
+ 007E00
+Window 2 type:1
+ 7E0000
+Window 3 type:1
+ 000000
+Window 4 type:1
+ 000000
+Window 5 type:1
+ 000000
+Window 6 type:1
+ 000000
+
+
+
+**********************************************
+ID:001F	type:01
+
+01: 01 00 00 00 00 00 
+Pre_data:00 AB 	type:01
+
+***窗口统计信息***
+Window 1 type:1
+ 00AB01
+Window 2 type:1
+ AB0100
+Window 3 type:1
+ 010000
+Window 4 type:1
+ 000000
+Window 5 type:1
+ 000000
+Window 6 type:1
+ 000000
+
+
+
+**********************************************
+ID:0020	type:01
+
+01: 02 00 00 00 00 00 
+Pre_data:00 AB 	type:01
+
+***窗口统计信息***
+Window 1 type:1
+ 00AB02
+Window 2 type:1
+ AB0200
+Window 3 type:1
+ 020000
+Window 4 type:1
+ 000000
+Window 5 type:1
+ 000000
+Window 6 type:1
+ 000000
+
+
+
+**********************************************
+ID:0021	type:01
+
+01: 03 00 00 00 00 00 
+Pre_data:00 AB 	type:01
+
+***窗口统计信息***
+Window 1 type:1
+ 00AB03
+Window 2 type:1
+ AB0300
+Window 3 type:1
+ 030000
+Window 4 type:1
+ 000000
+Window 5 type:1
+ 000000
+Window 6 type:1
+ 000000
+
+
+
+**********************************************
+ID:0022	type:01
+
+01: 04 00 00 00 00 00 
+Pre_data:00 AB 	type:01
+
+***窗口统计信息***
+Window 1 type:1
+ 00AB04
+Window 2 type:1
+ AB0400
+Window 3 type:1
+ 040000
+Window 4 type:1
+ 000000
+Window 5 type:1
+ 000000
+Window 6 type:1
+ 000000
+
+
+
+

@@ -1,0 +1,298 @@
+--------------------ID信息--------------------
+
+ID_num:7
+
+ID:008	pre_data_type_num:32	total_type_num:110
+ID:009	pre_data_type_num:03	total_type_num:03
+ID:00A	pre_data_type_num:03	total_type_num:03
+ID:01F	pre_data_type_num:01	total_type_num:01
+ID:020	pre_data_type_num:01	total_type_num:01
+ID:021	pre_data_type_num:01	total_type_num:01
+ID:022	pre_data_type_num:01	total_type_num:01
+------------------ID和头两个字节------------------
+
+ID:008	pre_data_type_num:32	total_type_num:110
+Pre_data:00 01 	type_num:25
+Pre_data:00 82 	type_num:02
+Pre_data:00 83 	type_num:01
+Pre_data:00 84 	type_num:01
+Pre_data:00 85 	type_num:03
+Pre_data:00 86 	type_num:06
+Pre_data:00 BC 	type_num:03
+Pre_data:01 0A 	type_num:01
+Pre_data:01 AA 	type_num:01
+Pre_data:01 BC 	type_num:02
+Pre_data:02 0A 	type_num:01
+Pre_data:02 82 	type_num:02
+Pre_data:02 AA 	type_num:01
+Pre_data:03 0A 	type_num:02
+Pre_data:03 AA 	type_num:01
+Pre_data:04 0A 	type_num:08
+Pre_data:04 AA 	type_num:01
+Pre_data:05 0A 	type_num:01
+Pre_data:06 0A 	type_num:01
+Pre_data:07 0A 	type_num:02
+Pre_data:08 0A 	type_num:01
+Pre_data:08 82 	type_num:01
+Pre_data:09 0A 	type_num:02
+Pre_data:0A 0A 	type_num:15
+Pre_data:0B 0A 	type_num:01
+Pre_data:0C 0A 	type_num:01
+Pre_data:0D 0A 	type_num:01
+Pre_data:0E 0A 	type_num:01
+Pre_data:0F 0A 	type_num:01
+Pre_data:10 0A 	type_num:01
+Pre_data:10 82 	type_num:01
+Pre_data:14 0A 	type_num:19
+
+ID:009	pre_data_type_num:03	total_type_num:03
+Pre_data:41 87 	type_num:01
+Pre_data:42 87 	type_num:01
+Pre_data:43 87 	type_num:01
+
+ID:00A	pre_data_type_num:03	total_type_num:03
+Pre_data:00 6E 	type_num:01
+Pre_data:00 7E 	type_num:01
+Pre_data:01 6E 	type_num:01
+
+ID:01F	pre_data_type_num:01	total_type_num:01
+Pre_data:00 AB 	type_num:01
+
+ID:020	pre_data_type_num:01	total_type_num:01
+Pre_data:00 AB 	type_num:01
+
+ID:021	pre_data_type_num:01	total_type_num:01
+Pre_data:00 AB 	type_num:01
+
+ID:022	pre_data_type_num:01	total_type_num:01
+Pre_data:00 AB 	type_num:01
+
+
+-------------ID，头两个字节以及其他信息------------
+
+**********************************************
+ID:008	pre_data_type_num:32	total_type_num:110
+
+01: 01 00 00 01 0C 00 
+02: 01 01 00 01 0C 00 
+03: 01 02 00 01 01 00 
+04: 01 02 00 01 05 00 
+05: 01 02 00 01 0D 00 
+06: 02 02 00 02 01 00 
+07: 02 02 00 02 05 00 
+08: 02 02 00 02 09 00 
+09: 02 02 00 02 0D 00 
+10: 03 00 00 03 0C 00 
+11: 03 01 00 03 0C 00 
+12: 03 01 00 03 0D 00 
+13: 03 01 00 03 1C 00 
+14: 03 01 00 03 1D 00 
+15: 03 02 00 03 01 00 
+16: 03 02 00 03 09 00 
+17: 03 02 00 03 49 00 
+18: 03 02 00 03 4D 00 
+19: 03 02 00 03 59 00 
+20: 03 02 00 03 5D 00 
+21: 03 09 00 03 0C 00 
+22: 03 09 00 03 1C 00 
+23: 03 10 00 03 0C 00 
+24: 03 11 00 03 0C 00 
+25: 03 11 00 03 1C 00 
+Pre_data:00 01 	type_num:25
+
+01: 00 00 00 00 00 00 
+02: 00 01 00 00 00 00 
+Pre_data:00 82 	type_num:02
+
+01: 00 00 00 00 00 00 
+Pre_data:00 83 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:00 84 	type_num:01
+
+01: 00 00 00 20 20 31 
+02: 00 00 00 20 20 32 
+03: 00 00 00 20 20 33 
+Pre_data:00 85 	type_num:03
+
+01: 00 00 00 01 01 05 
+02: 00 00 00 02 01 05 
+03: 00 00 00 03 01 00 
+04: 00 00 00 03 01 01 
+05: 00 00 00 03 01 02 
+06: 00 00 00 03 01 05 
+Pre_data:00 86 	type_num:06
+
+01: 01 00 00 00 00 00 
+02: 02 00 00 00 00 00 
+03: 03 00 00 00 00 00 
+Pre_data:00 BC 	type_num:03
+
+01: 00 00 00 00 00 00 
+Pre_data:01 0A 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:01 AA 	type_num:01
+
+01: 01 00 00 00 00 00 
+02: 03 00 00 00 00 00 
+Pre_data:01 BC 	type_num:02
+
+01: 00 00 00 00 00 00 
+Pre_data:02 0A 	type_num:01
+
+01: 00 00 00 00 00 00 
+02: 00 01 00 00 00 00 
+Pre_data:02 82 	type_num:02
+
+01: 00 00 00 00 00 00 
+Pre_data:02 AA 	type_num:01
+
+01: 00 00 00 00 00 00 
+02: 04 00 00 00 00 00 
+Pre_data:03 0A 	type_num:02
+
+01: 00 00 00 00 00 00 
+Pre_data:03 AA 	type_num:01
+
+01: 04 00 00 00 01 17 
+02: 04 00 00 00 03 17 
+03: 04 00 00 01 01 17 
+04: 04 00 00 01 02 17 
+05: 04 00 00 01 03 17 
+06: 04 20 00 00 03 17 
+07: 04 40 00 00 03 17 
+08: 05 00 00 01 03 17 
+Pre_data:04 0A 	type_num:08
+
+01: 00 00 00 00 00 00 
+Pre_data:04 AA 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:05 0A 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:06 0A 	type_num:01
+
+01: 00 00 00 00 00 00 
+02: 04 00 00 00 00 00 
+Pre_data:07 0A 	type_num:02
+
+01: 00 00 00 00 00 00 
+Pre_data:08 0A 	type_num:01
+
+01: 00 01 00 00 00 00 
+Pre_data:08 82 	type_num:01
+
+01: 00 00 00 00 00 00 
+02: 04 00 00 00 00 00 
+Pre_data:09 0A 	type_num:02
+
+01: 00 00 00 17 48 00 
+02: 00 00 00 17 48 02 
+03: 00 00 00 17 48 03 
+04: 00 00 00 17 48 05 
+05: 00 00 00 17 48 07 
+06: 00 00 00 17 48 09 
+07: 00 00 04 17 48 19 
+08: 00 00 04 17 48 22 
+09: 00 00 04 17 48 24 
+10: 00 00 04 17 48 26 
+11: 00 00 04 17 48 27 
+12: 00 49 04 17 48 17 
+13: 00 CB 00 17 48 11 
+14: 02 B8 01 17 48 13 
+15: 02 C1 03 17 48 15 
+Pre_data:0A 0A 	type_num:15
+
+01: 00 00 00 00 00 00 
+Pre_data:0B 0A 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:0C 0A 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:0D 0A 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:0E 0A 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:0F 0A 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:10 0A 	type_num:01
+
+01: 00 01 00 00 00 00 
+Pre_data:10 82 	type_num:01
+
+01: 10 05 05 17 48 01 
+02: 10 05 05 17 48 02 
+03: 10 05 05 17 48 03 
+04: 10 05 05 17 48 04 
+05: 10 05 05 17 48 05 
+06: 10 05 05 17 48 06 
+07: 10 05 05 17 48 08 
+08: 10 05 05 17 48 10 
+09: 10 05 05 17 48 12 
+10: 10 05 05 17 48 14 
+11: 10 05 05 17 48 16 
+12: 10 05 05 17 48 18 
+13: 10 05 05 17 48 19 
+14: 10 05 05 17 48 21 
+15: 10 05 05 17 48 23 
+16: 10 05 05 17 48 24 
+17: 10 05 05 17 48 25 
+18: 10 05 05 17 48 27 
+19: 10 05 05 17 48 28 
+Pre_data:14 0A 	type_num:19
+
+**********************************************
+ID:009	pre_data_type_num:03	total_type_num:03
+
+01: 00 00 00 00 00 00 
+Pre_data:41 87 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:42 87 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:43 87 	type_num:01
+
+**********************************************
+ID:00A	pre_data_type_num:03	total_type_num:03
+
+01: 03 00 00 00 00 00 
+Pre_data:00 6E 	type_num:01
+
+01: 00 00 00 00 00 00 
+Pre_data:00 7E 	type_num:01
+
+01: 03 00 00 00 00 00 
+Pre_data:01 6E 	type_num:01
+
+**********************************************
+ID:01F	pre_data_type_num:01	total_type_num:01
+
+01: 01 00 00 00 00 00 
+Pre_data:00 AB 	type_num:01
+
+**********************************************
+ID:020	pre_data_type_num:01	total_type_num:01
+
+01: 02 00 00 00 00 00 
+Pre_data:00 AB 	type_num:01
+
+**********************************************
+ID:021	pre_data_type_num:01	total_type_num:01
+
+01: 03 00 00 00 00 00 
+Pre_data:00 AB 	type_num:01
+
+**********************************************
+ID:022	pre_data_type_num:01	total_type_num:01
+
+01: 04 00 00 00 00 00 
+Pre_data:00 AB 	type_num:01
+
+

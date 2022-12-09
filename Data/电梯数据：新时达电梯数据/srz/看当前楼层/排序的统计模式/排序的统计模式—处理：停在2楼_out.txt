@@ -1,0 +1,37 @@
+01: 00 00 00            22
+type:1 type:1           18
+01            11
+***字节统计信息***           7
+1 type:1	Byte 3 type:1	Byte 4 type:1	Byte 5 type:1	Byte 6 type:1	Byte 7 type:1	Byte 8 type:1           6
+00            6
+02            6
+type:1	type:01           5
+AB           2
+01: 19 32 12            1
+Byte 2 type:9	Byte 3 type:3	Byte 4 type:3	Byte 5 type:3	Byte 6 type:4	Byte 7 type:6	Byte 8 type:15           1
+Pre_data:00 83 	type:01           1
+Pre_data:00 86 	type:01           1
+23	type:01           1
+00 14 15 16 17 18 19           1
+00 20 32           1
+00           1
+Byte 01 02           1
+00 4 type:3           1
+01 84 85 86 AA BC           1
+0D 14 20           1
+03 07 08 09           1
+Pre_data:01 0A 	type:01           1
+Pre_data:03 AA 	type:01           1
+Pre_data:0A 0A 	type:01           1
+Pre_data:04 0A 	type:01           1
+01: 19 32 13            1
+01: 00 02 13            1
+01: 02 01 05            1
+01: 20 20 32            1
+Pre_data:07 0A 	type:01           1
+02 0C 00            1
+ID:0021 	type:01           1
+ID:000A 	type:01           1
+Pre_data:01	type:01           1
+Pre_data:10 0A 	type:12           1
+Pre_data:0D 0A 	type:01           1

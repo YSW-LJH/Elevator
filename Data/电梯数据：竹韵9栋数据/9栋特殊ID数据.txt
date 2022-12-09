@@ -1,0 +1,89 @@
+00000880         000.097.077             接收            100        DATA    STANDARD    6      1D 00 71 FF 42 A7 
+  00000881         000.010.266             接收            740        DATA    STANDARD    8      1D 00 47 21 03 D8 00 00 
+  
+  00000890         000.003.256             接收            100        DATA    STANDARD    6      15 00 60 04 00 A8 
+  
+  00000898         000.346.104             接收            740        DATA    STANDARD    7      1D 00 48 FF 00 FF 01 
+  00000899         000.003.442             接收            740        DATA    STANDARD    8      1D 00 47 21 03 D8 00 00 
+  
+  00000908         000.002.830             接收            100        DATA    STANDARD    6      1D 00 73 FF 08 A9 
+  00000909         000.001.951             接收            742        DATA    STANDARD    5      1D 00 50 FF 08 
+  
+  00000914         000.186.890             接收            100        DATA    STANDARD    6      1D 00 E9 01 01 AA 
+  
+  00000920         000.056.111             接收            100        DATA    STANDARD    6      1D 00 73 FF 04 AB 
+  00000921         000.002.342             接收            742        DATA    STANDARD    5      1D 00 20 FF 04 
+  
+  00000932         000.230.030             接收            740        DATA    STANDARD    7      1D 00 48 FF 00 FF 01 
+  00000933         000.003.408             接收            740        DATA    STANDARD    8      1D 00 47 21 03 D8 00 00 
+  
+  00000942         000.002.110             接收            100        DATA    STANDARD    6      1D 00 73 FF 04 AC 
+  00000943         000.004.078             接收            742        DATA    STANDARD    5      1D 00 50 FF 04 
+  
+  00000954         000.289.006             接收            100        DATA    STANDARD    6      1D 00 73 FF 08 AD 
+  00000955         000.003.215             接收            742        DATA    STANDARD    5      1D 00 20 FF 08 
+  
+  00000963         000.129.282             接收            740        DATA    STANDARD    7      1D 00 48 FF 00 FF 01 
+  00000964         000.002.952             接收            740        DATA    STANDARD    8      1D 00 47 20 03 D8 00 00 
+  
+  00000973         000.002.531             接收            100        DATA    STANDARD    6      1D 00 73 FF 08 AE 
+  00000974         000.001.174             接收            742        DATA    STANDARD    5      1D 00 50 FF 08 
+ 
+  00000988         000.004.173             接收            100        DATA    STANDARD    6      1D 00 71 FF 02 AF 
+ 
+  00000992         000.001.407             接收            100        DATA    STANDARD    6      1D 00 E9 01 00 B0 
+  
+  00000996         000.019.357             接收            740        DATA    STANDARD    7      1D 00 48 FF 00 FF 01 
+  00000997         000.003.399             接收            740        DATA    STANDARD    8      1D 00 47 21 03 D8 00 00 
+ 
+  00001006         000.002.830             接收            100        DATA    STANDARD    6      1D 00 73 FF 08 B1 
+  00001007         000.001.200             接收            742        DATA    STANDARD    5      1D 00 50 FF 08 
+  
+ 
+  00001018         000.001.452             接收            740        DATA    STANDARD    7      1D 00 48 FF 00 FF 02 
+ 
+  00001021         000.001.947             接收            100        DATA    STANDARD    6      1D 00 71 FF 50 B2 
+  00001022         000.003.518             接收            740        DATA    STANDARD    8      1D 00 47 11 02 D8 84 00 
+  
+  00001041         000.412.942             接收            740        DATA    STANDARD    7      1D 00 48 FF 00 FF 02 
+  00001042         000.004.313             接收            740        DATA    STANDARD    8      1D 00 47 11 02 D8 84 00 
+  
+  
+  00001051         000.002.128             接收            100        DATA    STANDARD    6      1D 00 73 FF 08 B3 
+  00001052         000.002.695             接收            742        DATA    STANDARD    5      1D 00 50 FF 08 
+  
+  00001054         000.264.868             接收            100        DATA    STANDARD    6      1D 00 E9 01 01 B4 
+  
+  00001059         000.249.842             接收            100        DATA    STANDARD    6      1D 00 73 FF 04 B5 
+  00001060         000.003.192             接收            742        DATA    STANDARD    5      1D 00 20 FF 04 
+ 
+  
+  00001079         000.303.350             接收            740        DATA    STANDARD    7      1D 00 48 FF 00 FF 02 
+  00001080         000.002.953             接收            740        DATA    STANDARD    8      1D 00 47 10 02 D8 84 00 
+  
+  00001089         000.001.763             接收            100        DATA    STANDARD    6      1D 00 73 FF 04 B6 
+  00001090         000.002.716             接收            742        DATA    STANDARD    5      1D 00 50 FF 04 
+  
+  00001097         000.232.641             接收            100        DATA    STANDARD    6      1D 00 73 FF 08 B7 
+  00001098         000.002.179             接收            742        DATA    STANDARD    5      1D 00 20 FF 08 
+ 
+  00001108         000.203.839             接收            740        DATA    STANDARD    7      1D 00 48 FF 00 FF 02 
+  00001109         000.002.928             接收            740        DATA    STANDARD    8      1D 00 47 10 02 D8 84 00 
+  
+  00001118         000.001.360             接收            100        DATA    STANDARD    6      1D 00 73 FF 08 B8 
+  00001119         000.002.979             接收            742        DATA    STANDARD    5      1D 00 50 FF 08 
+ 
+  00001123         000.503.745             接收            100        DATA    STANDARD    6      1D 00 71 FF 10 B9 
+  
+  
+  00001135         000.004.046             接收            740        DATA    STANDARD    7      1D 00 48 FF 00 FF 00 
+ 
+  00001139         000.003.049             接收            740        DATA    STANDARD    8      1D 00 47 00 02 D8 84 00 
+  
+  
+  00001158         000.077.297             接收            740        DATA    STANDARD    7      1D 00 48 FF 00 FF 00 
+  00001159         000.002.954             接收            740        DATA    STANDARD    8      1D 00 47 00 02 D8 84 00 
+  
+  00001168         000.001.312             接收            100        DATA    STANDARD    6      1D 00 73 FF 08 BB 
+  00001169         000.003.914             接收            742        DATA    STANDARD    5      1D 00 50 FF 08 
+  
