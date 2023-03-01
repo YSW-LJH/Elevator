@@ -18,11 +18,8 @@ using namespace std;
 static void getFiles(string path, vector<string>& files);
 static void process(string infile, string outfile);
 
-void formate_main()
+void formate_main(string path)
 {
-    string path;
-    cout << "输入文件夹路径，格式化后的文件位于\"..\\格式化\"文件夹下\n";
-    cin >> path;
     vector<string>files;
     getFiles(path, files);
     string cmd;

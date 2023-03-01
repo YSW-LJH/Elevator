@@ -1,6 +1,7 @@
 ﻿// 电梯编码预处理.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
 #include <iostream>
+#include <fstream>
 import Main_process;
 import Multiple_file_process;
 import Percent;
@@ -15,6 +16,7 @@ int main()
 	int window_size = -1;
 	int mode = -1;
 	int height = -1;
+	string path;
 	cout << "输入处理模式：1（单文件），2（多文件找楼层），3（数据出现概率统计），4（CAN数据文件格式化）\n模式：";
 	while (true)
 	{
@@ -43,7 +45,7 @@ Single:
 	模式 4 ：在1的基础上输出对定义大小滑窗的统计\n";
 	while (1)
 	{
-		cout << "输入文件名:\n";
+		cout << "输入文件名:\n";//不含后缀，仅支持.txt
 		cin >> filename;
 	Mode_input:
 		cout << "输入处理模式：\n";
@@ -72,16 +74,37 @@ Single:
 			cout << "模式输入错误  ＞︿＜  请重新输入模式代码\n";
 			goto Mode_input;
 		}
-		call_data_process(filename, mode, height, window_size);
+		filename += ".txt";
+		ifstream file;
+		file.open(filename, ios::in);
+		if (!file)
+		{
+			cout << "打开文件\"" << filename << "\"失败(＞﹏＜), 请检查文件是否存在" << endl;
+			return 0;
+		}
+		file.close();
+		if (call_data_process(filename, mode, height, window_size) == 0)
+			cout << "处理完成(●'v'●),输出文件名为:" << filename << endl;
+		else
+			cout << "建树失败" << endl;
 	}
 	return 1;
 Multiple:
+	cout << "文件命名规则：文件名_起始楼层_结束楼层.txt\n\
+    注：文件名不能包含‘_’!!!\n\
+    如：竹韵_1_4.txt，新时达_3_1.txt，123_1_55.txt\n\
+    如过是平层信息，可以命名为：竹韵_1.txt 或 竹韵_1_1.txt ，即起始楼层和结束楼层可以仅写一个\n\
+    输入文件夹路径：\n";
 	multiple_file_process();
 	return 1;
 Percent:
-	percent_main();
+	cout << "##数据概率统计函数##\n输入一个文件夹路径:\n";
+	cin >> path;
+	cout << percent_main(path);
 	return 1;
 Formate:
-	formate_main();
+	cout << "输入文件夹路径，格式化后的文件位于\"..\\格式化\"文件夹下\n";
+	cin >> path;
+	formate_main(path);
 	return 1;
 }

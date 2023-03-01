@@ -18,6 +18,7 @@ vector<_Floor>floor_all;//记录并集
 vector<bool>status;//记录并集下每个数据的状态
 vector<_Floor>floor_possibility;//记录交集
 //vector<_Floor>floor_difference;//记录平层文件与运行文件的差集
+ostringstream output;//记录输出结果字符串
 
 static void floor_calculate_main();
 static void pre_process(string filename);//预处理程序
@@ -36,18 +37,15 @@ extern void getFiles(string path, vector<string>& files);
 * 如：竹韵_1_4.txt，新时达_3_1.txt，123_1_55.txt
 * 如过是平层信息，可以命名为：竹韵_1.txt 或 竹韵_1_1.txt ，即起始楼层和结束楼层可以仅写一个
 */
+
 void multiple_file_process()
 {
-	cout << "文件命名规则：文件名_起始楼层_结束楼层.txt\n\
-    注：文件名不能包含‘_’!!!\n\
-    如：竹韵_1_4.txt，新时达_3_1.txt，123_1_55.txt\n\
-    如过是平层信息，可以命名为：竹韵_1.txt 或 竹韵_1_1.txt ，即起始楼层和结束楼层可以仅写一个\n\
-    输入文件夹路径：\n";
 	floor_calculate_main();
 }
 
 static void floor_calculate_main()
 {
+	output.clear();
 	vector<string>files;
 	vector<string>::iterator file_name;
 	getFiles((string)path, files);
@@ -59,17 +57,17 @@ static void floor_calculate_main()
 	vector<_Floor>::iterator node;
 	for (node = floor_possibility.begin(); node != floor_possibility.end(); node++)
 	{
-		cout << hex << uppercase << setw(3 + !Len_same) << setfill('0') << node->ID \
+		output << hex << uppercase << setw(3 + !Len_same) << setfill('0') << node->ID \
 			<< dec << ' ' << node->pre_size \
 			<< ' ' << node->byte_pos \
 			<< ' ' << node->count << endl;
 		for (int j = 0; j < node->data.size(); j++)
 		{
 			for (int k = 0; k < DATA_SIZE; k++)
-				cout << " " << hex << uppercase << setw(2) << setfill('0') << node->data[j][k];
-			cout << endl;
+				output << " " << hex << uppercase << setw(2) << setfill('0') << node->data[j][k];
+			output << endl;
 		}
-		cout << endl;
+		output << endl;
 	}
 }
 static void pre_process(string filename)
@@ -85,7 +83,7 @@ static void pre_process(string filename)
 	combine();
 	_delete();
 }
-//文件名格式化处理下，从文件名中获取相关信息
+//文件名格式化处理下，从文件名中获取相关信息，命名格式：name_(floor_begin)[_(floor_end)].txt
 static void filename_process(string filename)
 {
 	filename = filename.substr(filename.rfind('\\') + 1, filename.length() - filename.rfind('\\') + 1);
@@ -93,16 +91,16 @@ static void filename_process(string filename)
 	string name;
 	int floor_begin = 0;
 	int floor_end = 0;
-	for (size_t pos = 0, len = 0, i = 0; i < 3; i++)
+	for (size_t pos_1 = 0, pos_2 = 0, i = 0; i < 3; i++)
 	{
-		len = filename.find('_', pos);
-		if (len == string::npos && i == 1)
+		pos_2 = filename.find('_', pos_1);//查找符号位置
+		if (pos_2 == string::npos && i == 1)
 		{
 			floor_end = floor_begin;
 			break;
 		}
-		string temp = filename.substr(pos, len - pos);
-		pos = len + 1;
+		string temp = filename.substr(pos_1, pos_2 - pos_1);//截取pos_1,pos_2之间的字符串
+		pos_1 = pos_2 + 1;//pos_1指向下次查找的开头
 		switch (i)
 		{
 		case 0:
@@ -111,14 +109,14 @@ static void filename_process(string filename)
 		case 1:
 			for (int j = 0; j < temp.length() && temp[j] != '.'; j++)
 			{
-				floor_begin <<= 4;
+				floor_begin *= 10;
 				floor_begin += temp[j] - '0';
 			}
 			break;
 		case 2:
 			for (int j = 0; j < temp.length() && temp[j] != '.'; j++)
 			{
-				floor_end <<= 4;
+				floor_end *= 10;
 				floor_end += temp[j] - '0';
 			}
 			break;

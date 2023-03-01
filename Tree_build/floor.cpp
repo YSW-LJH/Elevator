@@ -3,8 +3,8 @@
 Floor* floors = NULL;
 Floor* floor_first = NULL;
 
-extern Tree_Root* roots;
-extern Data* datas;
+extern Tree_Root* root_now;
+extern Data* data_now;
 extern Tree_Root* root_first;
 extern int ID_num;
 
@@ -36,68 +36,68 @@ void floor_main()
 //第一种处理方式，直接查找递增数列--竹韵数据遇到了问题.
 static void pre_process()
 {
-	for (roots = root_first; roots; roots = roots->next)
+	for (root_now = root_first; root_now; root_now = root_now->next)
 		for (int i = 0; i <= 4; i++)//目前按照定义数据含义的位数小于等于4位来算
 		{
 			int temp_data[DATA_SIZE] = { 0 };//记录临时数据
 			bool pre_same = false;//记录前部数据是否相同
 			int count[DATA_SIZE] = { 0 };//计数
 			Data* data_temp[DATA_SIZE] = { NULL };//保留指针
-			datas = roots->child;
-			for (; datas; )
+			data_now = root_now->child;
+			for (; data_now; )
 			{
 				//更新需要比对的数据
 				if (pre_same == false)
 				{
 					//初始化数据
 					for (int j = 0; j < i; j++)
-						temp_data[j] = datas->com_data[j];
+						temp_data[j] = data_now->com_data[j];
 					for (int j = 0; j < DATA_SIZE; j++)
-						data_temp[j] = datas;
+						data_temp[j] = data_now;
 					memset(count, 0, sizeof(count));
 					pre_same = true;
-					datas = datas->next;
+					data_now = data_now->next;
 					//下一节点不存在则退出
-					if (datas == NULL)
+					if (data_now == NULL)
 						break;
 					for (int j = i; j < DATA_SIZE; j++)
-						temp_data[j] = datas->_pre[j];
+						temp_data[j] = data_now->_pre[j];
 				}
 				//比对前部数据是否相同, 不同则更新数据 ,
 				for (int j = 0; j < i; j++)
-					if (temp_data[j] != datas->com_data[j])
+					if (temp_data[j] != data_now->com_data[j])
 					{
 						for (int j = i; j < DATA_SIZE; j++)
 							if (count[j] + 1 == Floor_height)
-								new_node(roots, data_temp[j], count[j], j, i, temp_data[j]);
+								new_node(root_now, data_temp[j], count[j], j, i, temp_data[j]);
 						pre_same = false;
 						break;
 					}
 				if (pre_same == false)
 					continue;
 				//判断前部数据相同，开始进行统计
-				if (i == 3 && datas->com_data[0] == 0x1D && datas->com_data[1] == 0x00 && datas->com_data[2] == 0x47)
-					datas = datas;
+				if (i == 3 && data_now->com_data[0] == 0x1D && data_now->com_data[1] == 0x00 && data_now->com_data[2] == 0x47)
+					data_now = data_now;
 				for (int j = i; j < DATA_SIZE; j++)
 				{
-					if (datas->_pre[j] == 0)
+					if (data_now->_pre[j] == 0)
 						continue;
-					if (temp_data[j] == datas->_pre[j])
+					if (temp_data[j] == data_now->_pre[j])
 						count[j]++;
 					else
 					{
 						if (count[j] + 1 == Floor_height)
-							new_node(roots, data_temp[j], count[j], j, i, temp_data[j]);
+							new_node(root_now, data_temp[j], count[j], j, i, temp_data[j]);
 						count[j] = 1;
-						data_temp[j] = datas->pre;
-						temp_data[j] = datas->_pre[j];
+						data_temp[j] = data_now->pre;
+						temp_data[j] = data_now->_pre[j];
 					}
 				}
-				datas = datas->next;
+				data_now = data_now->next;
 			}
 			for (int j = i; j < DATA_SIZE; j++)
 				if (count[j] + 1 == Floor_height)
-					new_node(roots, data_temp[j], count[j], j, i, temp_data[j]);
+					new_node(root_now, data_temp[j], count[j], j, i, temp_data[j]);
 		}
 }
 //第二种处理方式，统计一整列的数据，然后再找递增
@@ -107,15 +107,15 @@ static void pre_process_2()
 	for (int pre_size = 0; pre_size <= 4; pre_size++)
 	{
 		int* pre_data = new int[pre_size];
-		for (roots = root_first; roots; roots = roots->next)
+		for (root_now = root_first; root_now; root_now = root_now->next)
 		{
 			memset(pre_data, -1, pre_size);
 			bool pre_same = false;
-			for (datas = roots->child; datas; datas = datas->next)
+			for (data_now = root_now->child; data_now; data_now = data_now->next)
 			{
 				//判断前部数据是否相同
 				for (int i = 0; i < pre_size; i++)
-					if (pre_data[i] != datas->com_data[i])
+					if (pre_data[i] != data_now->com_data[i])
 					{
 						pre_same = false;
 						break;
@@ -123,16 +123,16 @@ static void pre_process_2()
 				//前置数据不同，更新前置数据并处理现在已采集的数据
 				if (!pre_same)
 				{
-					pre_process_2_help(data, roots->ID,pre_size);
+					pre_process_2_help(data, root_now->ID,pre_size);
 					for (int i = 0; i < pre_size; i++)
-						pre_data[i] = datas->com_data[i];
+						pre_data[i] = data_now->com_data[i];
 					pre_same = true;
 				}
 				//新数据放入向量
 				for (int i = 0; i < DATA_SIZE; i++)
-					data[i].push_back(datas->com_data[i]);
+					data[i].push_back(data_now->com_data[i]);
 			}
-			pre_process_2_help(data, roots->ID,pre_size);
+			pre_process_2_help(data, root_now->ID,pre_size);
 		}
 		delete[]pre_data;
 	}
@@ -157,25 +157,27 @@ static void pre_process_2_help(vector<vector<int>>& data, int ID, int pre_size)
 		}
 		if (temp.size() != Floor_height)
 			continue;
-		//判断数据是否为等差数列
+		//判断数据是否为等差数列,PS: 未判断数据个数是否与输入文件的楼层数相同。
 		int flag = temp[1] - temp[0];
-		bool same = true;
+		int same = 2;
 		a = temp.begin();
 		a += 2;
 		for (; a != temp.end(); a++)
 			if (*a - *(a - 1) != flag)
 			{
-				same = false;
+				same = 0;
 				break;
 			}
-		if (!same)
+			else
+				same++;
+		if (same == 0)
 			continue;
 		//判断数据代表楼层，加入节点
 		Floor* temp_floor = new Floor();
 		temp_floor->pre_size = pre_size;
 		temp_floor->byte_pos = pos + 1;
 		temp_floor->height = Floor_height;
-		temp_floor->count = Floor_height;
+		temp_floor->count = same;
 		temp_floor->ID = ID;
 		temp_floor->sub_num = flag;
 		for (int i = 0; i < Floor_height; i++)
@@ -185,6 +187,7 @@ static void pre_process_2_help(vector<vector<int>>& data, int ID, int pre_size)
 				temp_0.push_back(data[j][i]);
 			temp_floor->data.push_back(temp_0);
 		}
+		//更新节点结构
 		if (floor_first == NULL)
 		{
 			floor_first = temp_floor;
@@ -197,6 +200,7 @@ static void pre_process_2_help(vector<vector<int>>& data, int ID, int pre_size)
 			floors = floors->next;
 		}
 	}
+	//向量初始化
 	data.clear();
 	data.insert(data.begin(), 8, vector<int>(0, 0));
 }

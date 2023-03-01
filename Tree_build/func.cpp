@@ -9,12 +9,11 @@ int Window_size = -1;
 string File_path;
 string File_name;
 
-extern Tree_Root* roots;
-extern Data* datas;
+extern Tree_Root* root_now;
+extern Data* data_now;
 extern Tree_Root* root_first;
-extern int ID_num;
 
-extern Door* doors;
+extern Door* door_now;
 extern Door* door_first;
 
 extern Floor* floors;
@@ -29,23 +28,22 @@ static void print_c(string filename);
 static void file_process(string filename);//文件处理
 void _delete();
 
-void call(string filename, int mode, int height, int w_size)
+int call(string filename, int mode, int height, int w_size)
 {
-	filename += ".txt";
 	File_path = filename;
 	Mode = mode;
 	Floor_height = height;
 	Window_size = w_size;
 	tree_main();
 	if (root_first == NULL)
-		return;
+		return -1;
 	if (Mode == 0 || Mode == 2)
 		door_main();
 	if (Mode == 0 || Mode == 3)
 		floor_main();
 	print(filename);
-	cout << "处理完成(●'v'●),输出文件名为:" << filename << endl;
 	_delete();
+	return 0;
 }
 void format(int* data, char* buff, int& flag)//将一行数据转换为数组
 {
@@ -117,26 +115,26 @@ static void print_a(string filename)
 {
 	ofstream a;
 	a.open(filename, ios::out);
-	a << "ID_num:" << ID_num << endl << endl;
-	for (roots = root_first; roots; roots = roots->next)//从ID根节点依次输出
+	a << "ID_num:" << root_first->file->ID_num << endl << endl;
+	for (root_now = root_first; root_now; root_now = root_now->next)//从ID根节点依次输出
 	{
-		datas = roots->child;
-		a << "ID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << roots->ID\
-			<< "	type:" << dec << setw(2) << setfill('0') << roots->total_type;
+		data_now = root_now->child;
+		a << "ID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << root_now->ID\
+			<< "	type:" << dec << setw(2) << setfill('0') << root_now->total_type;
 		for (int i = 0; i < DATA_SIZE; i++)
-			if (roots->Window_count[i] > 0)
-				a << "	Window " << dec << i + 1 << " type:" << roots->Window_count[i];
+			if (root_now->Window_count[i] > 0)
+				a << "	Window " << dec << i + 1 << " type:" << root_now->Window_count[i];
 		a << endl;
 	}
 	//打印门信号相关信息
 	if (Mode == 0 || Mode == 2)
 	{
 		a << "*******门信号（未完成）*******\n";
-		for (doors = door_first; doors; doors = doors->next)
+		for (door_now = door_first; door_now; door_now = door_now->next)
 		{
-			a << "\nID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << doors->root->ID << endl;
-			for (int i = 0; i < doors->data_sequence.length(); i += 10)
-				a << "	" << doors->data_sequence.substr(i, 10) << endl;
+			a << "\nID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << door_now->root->ID << endl;
+			for (int i = 0; i < door_now->data_sequence.length(); i += 10)
+				a << "	" << door_now->data_sequence.substr(i, 10) << endl;
 		}
 	}
 	//打印楼层信号相关信息
@@ -162,19 +160,19 @@ static void print_b(string filename)
 {
 	ofstream b;
 	b.open(filename, ios::out);
-	for (roots = root_first; roots; roots = roots->next)//从ID根节点依次输出
+	for (root_now = root_first; root_now; root_now = root_now->next)//从ID根节点依次输出
 	{
-		datas = roots->child;
-		b << "ID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << roots->ID\
-			<< "	type:" << dec << setw(2) << setfill('0') << roots->total_type << endl;
-		for (; datas; datas = datas->next)
+		data_now = root_now->child;
+		b << "ID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << root_now->ID\
+			<< "	type:" << dec << setw(2) << setfill('0') << root_now->total_type << endl;
+		for (; data_now; data_now = data_now->next)
 		{
-			if ((datas->next == NULL) || (datas->next && datas->next->pos == 1))
+			if ((data_now->next == NULL) || (data_now->next && data_now->next->pos == 1))
 			{
 				b << "Pre_data:";
 				for (int i = 0; i < PRE_SIZE; i++)
-					b << hex << uppercase << setw(2) << setfill('0') << datas->com_data[i] << ' ';
-				b << "	type:" << dec << setw(2) << setfill('0') << datas->pos << endl;
+					b << hex << uppercase << setw(2) << setfill('0') << data_now->com_data[i] << ' ';
+				b << "	type:" << dec << setw(2) << setfill('0') << data_now->pos << endl;
 			}
 		}
 		b << endl;
@@ -185,25 +183,25 @@ static void print_c(string filename)
 {
 	ofstream c;
 	c.open(filename, ios::out);
-	for (roots = root_first; roots; roots = roots->next)//从ID根节点依次输出
+	for (root_now = root_first; root_now; root_now = root_now->next)//从ID根节点依次输出
 	{
-		datas = roots->child;
+		data_now = root_now->child;
 		c << "**********************************************" << endl;
-		c << "ID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << roots->ID\
-			<< "	type:" << dec << setw(2) << setfill('0') << roots->total_type << endl << endl;
-		for (; datas; datas = datas->next)
+		c << "ID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << root_now->ID\
+			<< "	type:" << dec << setw(2) << setfill('0') << root_now->total_type << endl << endl;
+		for (; data_now; data_now = data_now->next)
 		{
-			c << dec << setw(2) << setfill('0') << datas->pos << ": ";
-			for (int i = PRE_SIZE; i < datas->size; i++)
-				c << hex << uppercase << setw(2) << setfill('0') << datas->com_data[i] << ' ';
+			c << dec << setw(2) << setfill('0') << data_now->pos << ": ";
+			for (int i = PRE_SIZE; i < data_now->size; i++)
+				c << hex << uppercase << setw(2) << setfill('0') << data_now->com_data[i] << ' ';
 			//c << datas->size;
 			c << endl;
-			if ((datas->next == NULL) || (datas->next && datas->next->pos == 1))
+			if ((data_now->next == NULL) || (data_now->next && data_now->next->pos == 1))
 			{
 				c << "Pre_data:";
 				for (int i = 0; i < PRE_SIZE; i++)
-					c << hex << uppercase << setw(2) << setfill('0') << datas->com_data[i] << ' ';
-				c << "	type:" << dec << setw(2) << setfill('0') << datas->pos << endl << endl;
+					c << hex << uppercase << setw(2) << setfill('0') << data_now->com_data[i] << ' ';
+				c << "	type:" << dec << setw(2) << setfill('0') << data_now->pos << endl << endl;
 			}
 		}
 		//输出滑窗信息统计
@@ -212,13 +210,13 @@ static void print_c(string filename)
 			c << "\n***窗口统计信息***" << endl;
 			for (int i = 0; i < DATA_SIZE; i++)
 			{
-				if (roots->Window_count[i] > 0)
-					c << "Window " << dec << i + 1 << " type:" << roots->Window_count[i];
-				for (int j = 0; j < roots->Window_count[i]; j++)
+				if (root_now->Window_count[i] > 0)
+					c << "Window " << dec << i + 1 << " type:" << root_now->Window_count[i];
+				for (int j = 0; j < root_now->Window_count[i]; j++)
 				{
 					if (j % 10 == 0)
 						c << endl;
-					c << " " << hex << uppercase << setw(2 * Window_size) << setfill('0') << roots->Window[i][j];
+					c << " " << hex << uppercase << setw(2 * Window_size) << setfill('0') << root_now->Window[i][j];
 				}
 				c << endl;
 			}

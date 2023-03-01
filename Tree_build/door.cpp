@@ -4,7 +4,7 @@ Door* doors = NULL;
 Door* door_first = NULL;
 char rule[4] = { 'A','B','C','D' };
 
-extern Tree_Root* roots;
+extern Tree_Root* root_now;
 extern Data* datas;
 extern Tree_Root* root_first;
 extern string File_path;
@@ -27,8 +27,8 @@ static void pre_process()
 	doors = new Door();
 	door_first = doors;
 	Door* pre_door = NULL;
-	for (roots = root_first; roots; roots = roots->next)
-		if (roots->total_type <= TYPE_NUM)
+	for (root_now = root_first; root_now; root_now = root_now->next)
+		if (root_now->total_type <= TYPE_NUM)
 		{
 			if (doors == NULL)
 				doors = new Door();
@@ -37,7 +37,7 @@ static void pre_process()
 				pre_door->next = doors;
 				doors->pre = pre_door;
 			}
-			doors->root = roots;
+			doors->root = root_now;
 			pre_door = doors;
 			doors = doors->next;
 		}

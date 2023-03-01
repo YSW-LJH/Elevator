@@ -8,7 +8,7 @@ extern string File_path;
 extern string File_name;
 extern int Mode;
 
-extern Tree_Root* roots;
+extern Tree_Root* root_now;
 extern Data* datas;
 extern Tree_Root* root_first;
 extern int Total_data_num;
@@ -29,13 +29,10 @@ int total_2 = 0;
 
 //using namespace std;
 
-void percent_main()
+string percent_main(string path)
 {
-	string path;
 	string path_out;
 	vector<string>files;
-	cout << "##数据概率统计函数##\n输入一个文件夹路径:\n";
-	cin >> path;
 	path_out = path + "\\out";
 	string cmd;
 	cmd = "mkdir " + path_out;
@@ -52,9 +49,7 @@ void percent_main()
 		data_1.clear();
 	}
 	print(path_out.append("\\total.txt"), data_all, total_all);
-	cout << "输出文件位于“"<<path_out<<"”下\n输入任意字符退出\n";
-	getchar();
-	getchar();
+	return ("输出文件位于“" + path_out + "”\n");
 }
 //int main()
 //{
@@ -79,12 +74,12 @@ static void pre_process(string file, int& total, vector<vector<int>>& data)
 		return;
 	total = Total_data_num;
 	vector<int>temp_data(4, 0);
-	for (roots = root_first; roots; roots = roots->next)
+	for (root_now = root_first; root_now; root_now = root_now->next)
 	{
 		int pre_data[2] = { -1 };
 		bool pre_same = false;
 		int count = 0;
-		for (datas = roots->child; datas; datas = datas->next)
+		for (datas = root_now->child; datas; datas = datas->next)
 		{
 			if (pre_data[0] != datas->com_data[0] || pre_data[1] != datas->com_data[1])
 				pre_same = false;
@@ -92,7 +87,7 @@ static void pre_process(string file, int& total, vector<vector<int>>& data)
 			{
 				if (pre_data[0] != -1)
 				{
-					temp_data[0] = roots->ID;
+					temp_data[0] = root_now->ID;
 					temp_data[1] = pre_data[0];
 					temp_data[2] = pre_data[1];
 					temp_data[3] = count;
@@ -105,7 +100,7 @@ static void pre_process(string file, int& total, vector<vector<int>>& data)
 			}
 			count += datas->count;
 		}
-		temp_data[0] = roots->ID;
+		temp_data[0] = root_now->ID;
 		temp_data[1] = pre_data[0];
 		temp_data[2] = pre_data[1];
 		temp_data[3] = count;

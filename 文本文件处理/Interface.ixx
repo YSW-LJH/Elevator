@@ -1,3 +1,4 @@
+#include <string>
 export module Formate;
 
-export void formate_main();
+export void formate_main(std::string path);

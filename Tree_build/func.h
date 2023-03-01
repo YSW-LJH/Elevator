@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <io.h>
 #include <list>
+#include <sstream>
 //#include <stdafx.h>
 
 #define SIZE 200 //一行数据的字符数
@@ -23,7 +24,7 @@
 
 using namespace std;
 
-void call(string filename, int mode, int height, int w_size);//调用接口
+int call(string filename, int mode, int height, int w_size);//调用接口
 void format(int* data, char* buff, int& flag);//十六进制字符转换为数字
 void getFiles(string path, vector<string>& files);//获取路径下所有*.txt文件
 void _delete();
