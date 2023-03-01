@@ -1,6 +1,9 @@
 #pragma once
 #include <func.h>
 
+struct _File_Data;
+struct _Tree_Root;
+struct _Data;
 
 //多文件下，用于保存原始文件的结构体
 typedef struct _File_Data
@@ -21,12 +24,10 @@ typedef struct _Tree_Root
 	int total_type = 0;//已经包含的数据类型数量
 	int pre_data_type = 0;//前置数据种类
 	int count = 0;	//统计Data节点数量
-	unsigned int* Window[DATA_SIZE] = { NULL };//统计Data下每一个滑窗数据
-	int Window_count[DATA_SIZE] = { 0 };
-	Data* child = NULL;
+	_Data* child = NULL;
 	_Tree_Root* next = NULL;
 	_Tree_Root* pre = NULL;
-	_File_Data* file = NULL;
+	_File_Data* file = NULL;\
 }Tree_Root;
 //用于记录数据的结构体
 typedef struct _Data
