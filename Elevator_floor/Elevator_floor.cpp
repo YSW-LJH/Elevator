@@ -8,7 +8,7 @@ extern int Floor_height;
 extern _Floor* floors;
 extern _Floor* floor_first;
 extern string path;
-extern string File_path;
+extern string file_path;
 extern string File_name;
 extern int Mode;
 extern bool Len_same;
@@ -73,7 +73,7 @@ static void floor_calculate_main()
 static void pre_process(string filename)
 {
 	Mode = 1;
-	File_path = filename;
+	file_path = filename;
 	filename_process(filename);
 	//跳过平层文件
 	if (Floor_height == 1)

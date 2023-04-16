@@ -1,17 +1,12 @@
 #include <Tree.h>
 
 Data* data_now = NULL;
-Tree_Root* root_now = NULL;
-Tree_Root* root_first = NULL;//根节点
+Data_Root* root_now = NULL;
+Data_Root* root_first = NULL;//根节点
 File_Data* file_first = NULL;
 File_Data* file_now = NULL;
 
-extern bool Len_same;
-extern string File_path;
-extern int Floor_height;
-extern int Floor_begin;
-extern int Floor_end;
-
+static void name_process(string filename);//从文件名获取信息
 static void data_process(char* buff, int& len);//处理一行数据
 static void ID_update(bool& ID_exis, int data_temp);//更新ID信息
 static void DATA_update(bool& data_exis, Data* node_temp);//更新数据信息
@@ -20,7 +15,7 @@ static void tree_update();//更新树的数据
 
 void tree_delete();    //删除树
 
-void tree_main()
+void tree_main(string file_path)
 {
 	ifstream file;
 	//建立文件原始数据树
@@ -28,17 +23,19 @@ void tree_main()
 	{
 		file_first = new File_Data();
 		file_now = file_first;
-		file_now->file_path = File_path;
+		file_now->file_path = file_path;
 	}
 	else
 	{
 		file_now->next = new File_Data();
 		file_now->next->pre = file_now;
 		file_now = file_now->next;
-		file_now->file_path = File_path;
+		file_now->file_path = file_path;
 	}
+	//处理文件名
+	name_process(file_path);
 	//打开文件
-	file.open(File_path, ios::in);
+	file.open(file_path, ios::in);
 	char buff[SIZE];
 	int len = -1;
 	while (!file.eof())
@@ -49,10 +46,30 @@ void tree_main()
 	file.close();
 	tree_update();
 	file_now->tree_root = root_first;
-	file_now->Floor_height = Floor_height;
-	file_now->Floor_begin = Floor_begin;
-	file_now->Floor_end = Floor_end;
-
+}
+//文件名格式化处理下，从文件名中获取相关信息，命名格式：name_(floor_begin)_(floor_pass)_(floor_end).txt
+void name_process(string filename)
+{
+	//获取文件名，删除路径信息
+	filename = filename.substr(filename.rfind('\\') + 1, filename.length() - filename.rfind('\\') + 1);
+	//获取楼层数据
+	size_t pos = filename.find_first_of('_');
+	while (1)
+	{
+		int num = 0;
+		for (pos++; filename[pos] >= '0' && filename[pos] <= '9'; pos++)
+		{
+			num *= 10;
+			num += filename[pos] - '0';
+		}
+		file_now->Floor_pass.push_back(num);
+		//判断是否完成读取
+		if (filename[pos] == '.')
+			break;
+	}
+	int temp = file_now->Floor_pass.front() - file_now->Floor_pass.back();
+	file_now->Floor_height = abs(temp) + 1;
+	file_now->direction = temp < 0;
 }
 void data_process(char* buff, int& len)//处理一行数据
 {
@@ -61,17 +78,17 @@ void data_process(char* buff, int& len)//处理一行数据
 	bool data_exis = true;//用于判断当前数据是否已经存在
 	Data* node_temp = new Data;
 	int data[DATA_SIZE + 1];//记录该行数据，包含ID
-	memset(data, -1, DATA_SIZE + 1);
+	memset(data, -1, sizeof(data));
 	format(data, buff, flag);
 	//如果该行为空，则认为数据处理完成
 	if (flag == 0)
 		return;
 	//判断是否所有数据一样长
-	if (Len_same)
+	if (file_now->Len_same)
 		if (len == -1)
 			len = flag;
 		else if (len != flag)
-			Len_same = false;
+			file_now->Len_same = false;
 	//更新ID为（ID+数据长度）
 	data[0] <<= 4;
 	data[0] += flag - 1;
@@ -121,21 +138,21 @@ void ID_update(bool& ID_exis, int data_temp)
 	//如果当前root头节点为空，则更新root头节点
 	if (!root_first)
 	{
-		root_first = new Tree_Root();
+		root_first = new Data_Root();
 		root_now = root_first;
 	}
 
 	//如果当前节点是尾节点，则在后面补充新数据
 	else if (root_now->next == NULL && data_temp > root_now->ID)
 	{
-		root_now->next = new Tree_Root();
+		root_now->next = new Data_Root();
 		root_now->next->pre = root_now;
 		root_now = root_now->next;
 	}
 	//当前节点的值比新节点的值大，则在该节点前面插入
 	else
 	{
-		Tree_Root* temp = new Tree_Root();
+		Data_Root* temp = new Data_Root();
 		if (root_now->pre)
 		{
 			temp->pre = root_now->pre;
@@ -237,7 +254,7 @@ void tree_update()
 	for (; root_now; root_now = root_now->next)
 	{
 		//数据位数相同则去掉ID后的数据位
-		if (Len_same)
+		if (file_now->Len_same)
 			root_now->ID >>= 4;
 		//统计每位十六进制数的出现次数
 		int count[DATA_SIZE * 2][16];
@@ -291,24 +308,35 @@ void Data_Restore(string out_path)
 	for(file_now=file_first;file_now;file_now=file_now->next)
 		for (auto data : file_now->data)
 		{
-			out << hex << uppercase << setw(3 + !Len_same) << setfill('0') << data->ID->ID << "  ";
+			//打印数据
+			out << hex << uppercase << setw(3 + !file_now->Len_same) << setfill('0') << data->ID->ID << "  ";
 			for (int i = 0; i < DATA_SIZE; i++)
 				if (i < data->size)
 					out << hex << uppercase << setw(2) << setfill('0') << data->com_data[i] << " ";
 					//out << hex << uppercase << data->com_data[i] / 16 << " " << data->com_data[i] % 16 << " ";
 				else
 					out << "-1" << " ";
+
 			//标签打印
 			//if (data->tag_all.size() > 0)
 			//	for (auto i : data->tag_all)
 			//		if (i != 0)
 			//			out << dec << i << " ";
+			
 			//概率打印
 			//out << endl << " ";
-			//for (int i = 0; i < DATA_SIZE; i++)
+			//for (int i = 0; i < data->size; i++)
 			//	out << dec << data->percent[i][0] << " " << data->percent[i][1] << " ";
-			if(data->status[0]!=0)
-			out << dec << data->status[0];
+
+			//状态打印
+			//if (data->status[0] != 0)
+			out << dec << data->status[0] << ' ';
+			out << dec << data->status[1] << ' ';
+
+			//出现楼层打印
+			for (int i = 0; i < file_now->Floor_height; i++)
+				out << data->exist_floor[i];
+
 			out << endl;
 		}
 	//树数据打印
@@ -339,6 +367,7 @@ void tree_delete()
 	file_now = file_first;
 	while (file_now)
 	{
+		//删除树数据
 		root_now = file_now->tree_root;
 		while (root_now)
 		{
@@ -349,10 +378,13 @@ void tree_delete()
 				data_now = data_now->next;
 				delete datas_temp;
 			}
-			Tree_Root* roots_temp = root_now;
+			Data_Root* roots_temp = root_now;
 			root_now = root_now->next;
 			delete roots_temp;
 		}
+		//删除楼层数据
+		floor_compare_delete(file_now->floor_data);
+		//删除当前接节点
 		File_Data* file_temp = file_now;
 		file_now = file_now->next;
 		delete file_temp;

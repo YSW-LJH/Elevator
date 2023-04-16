@@ -1,16 +1,10 @@
 #include <func.h>
 
-int Mode = -1;
-int Floor_height = 0;
-int Floor_begin = 0;
-int Floor_end = 0;
-bool Len_same = true;
-string File_path;
-string File_name;
-
-extern Tree_Root* root_now;
 extern Data* data_now;
-extern Tree_Root* root_first;
+extern Data_Root* root_first;
+extern Data_Root* root_now;
+extern File_Data* file_first;
+extern File_Data* file_now;
 
 
 void format(int* data, char* buff, int& flag);//十六进制字符转换为数字
@@ -22,21 +16,24 @@ static void print_c(string filename);
 static void file_process(string filename);//文件处理
 void _delete();
 
-int call(string filename, int mode, int height)
+map<string, string> call(string path)
 {
-	File_path = filename;
-	Mode = mode;
-	Floor_height = height;
-	tree_main();
-	if (root_first == NULL)
-		return -1;
-	if (Mode == 0 || Mode == 2)
-		door_main();
-	if (Mode == 0 || Mode == 3)
+	map<string, string>result;
+	vector<string>files;
+	getFiles(path, files);
+	for (auto file : files)
+	{
+		tree_main(file);
 		floor_main();
-	print(filename);
+		floor_verify();
+		floor_compare_main();
+		door_main();
+		Data_Restore(path + "\\out" + file.substr(file.rfind('\\'), file.length() - file.rfind('\\')));
+	}
+	result = file_first->Signal;
+	//print(filename);
 	_delete();
-	return 0;
+	return result;
 }
 void format(int* data, char* buff, int& flag)//将一行数据转换为数组
 {
@@ -77,10 +74,11 @@ void getFiles(string path, vector<string>& files)
 			//如果是目录,迭代之 //如果不是,加入列表
 			if ((fileinfo.attrib & _A_SUBDIR))
 			{
-				if (strcmp(fileinfo.name, ".") != 0 && strcmp(fileinfo.name, "..") != 0)
-				{
-					getFiles(p.assign(path).append("\\").append(fileinfo.name), files);
-				}
+				//if (strcmp(fileinfo.name, ".") != 0 && strcmp(fileinfo.name, "..") != 0)
+				//{
+				//	getFiles(p.assign(path).append("\\").append(fileinfo.name), files);
+				//}
+				continue;
 			}
 			else
 			{
@@ -92,6 +90,7 @@ void getFiles(string path, vector<string>& files)
 }
 static void print(string& filename)
 {
+	file_now = file_first;
 	size_t pos = filename.find_last_of('.');
 	if (pos >= 0)
 	{
@@ -112,7 +111,7 @@ static void print_a(string filename)
 	for (root_now = root_first; root_now; root_now = root_now->next)//从ID根节点依次输出
 	{
 		data_now = root_now->child;
-		a << "ID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << root_now->ID\
+		a << "ID:" << hex << uppercase << setw(3 + !file_now->Len_same) << setfill('0') << root_now->ID\
 			<< "	type:" << dec << setw(2) << setfill('0') << root_now->total_type;
 		a << endl;
 	}
@@ -122,7 +121,7 @@ static void print_a(string filename)
 	//	a << "*******门信号（未完成）*******\n";
 	//	for (door_now = door_first; door_now; door_now = door_now->next)
 	//	{
-	//		a << "\nID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << door_now->root->ID << endl;
+	//		a << "\nID:" << hex << uppercase << setw(3 + !file_now->Len_same) << setfill('0') << door_now->root->ID << endl;
 	//		for (int i = 0; i < door_now->data_sequence.length(); i += 10)
 	//			a << "	" << door_now->data_sequence.substr(i, 10) << endl;
 	//	}
@@ -133,7 +132,7 @@ static void print_a(string filename)
 	//	a << "********楼层信号********\n";
 	//	for (floors = floor_first; floors; floors = floors->next)
 	//	{
-	//		a << "\nID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << floors->ID << endl;
+	//		a << "\nID:" << hex << uppercase << setw(3 + !file_now->Len_same) << setfill('0') << floors->ID << endl;
 	//		a << "数据量：" << dec << floors->count << " 表示楼层的字节位：" << floors->byte_pos << " 可能的数据定义字节数：" << floors->pre_size << endl;
 	//		for (int i = 0; i < floors->count; i++)
 	//		{
@@ -153,7 +152,7 @@ static void print_b(string filename)
 	for (root_now = root_first; root_now; root_now = root_now->next)//从ID根节点依次输出
 	{
 		data_now = root_now->child;
-		b << "ID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << root_now->ID\
+		b << "ID:" << hex << uppercase << setw(3 + !file_now->Len_same) << setfill('0') << root_now->ID\
 			<< "	type:" << dec << setw(2) << setfill('0') << root_now->total_type << endl;
 		for (; data_now; data_now = data_now->next)
 		{
@@ -177,7 +176,7 @@ static void print_c(string filename)
 	{
 		data_now = root_now->child;
 		c << "**********************************************" << endl;
-		c << "ID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << root_now->ID\
+		c << "ID:" << hex << uppercase << setw(3 + !file_now->Len_same) << setfill('0') << root_now->ID\
 			<< "	type:" << dec << setw(2) << setfill('0') << root_now->total_type << endl << endl;
 		for (; data_now; data_now = data_now->next)
 		{
@@ -240,10 +239,5 @@ static void file_process(string filename)
 void _delete()
 {
 	tree_delete();
-	door_delete();
-	Mode = -1;
-	Floor_height = 0;
-	Floor_begin = 0;
-	Floor_end = 0;
-	Len_same = true;
+	//door_delete();
 }

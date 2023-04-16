@@ -139,17 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="door.cpp" />
     <ClCompile Include="floor_compare.cpp" />
     <ClCompile Include="floor.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Interface.ixx" />
-    <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="tree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="door.h" />
     <ClInclude Include="floor_compare.h" />
     <ClInclude Include="floor.h" />
     <ClInclude Include="func.h" />
-    <ClInclude Include="Tree.h" />
+    <ClInclude Include="tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

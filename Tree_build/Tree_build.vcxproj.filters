@@ -27,7 +27,10 @@
     <ClCompile Include="Interface.ixx">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Tree.cpp">
+    <ClCompile Include="tree.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="door.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +44,10 @@
     <ClInclude Include="func.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Tree.h">
+    <ClInclude Include="tree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="door.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

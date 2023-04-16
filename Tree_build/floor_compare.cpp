@@ -1,51 +1,64 @@
 #include <floor_compare.h>
 
-char rule[4] = { 'A','B','C','D' };
-
 extern File_Data* file_first;
 extern File_Data* file_now;
-extern Tree_Root* root_first;
-extern Tree_Root* root_now;
+extern Data_Root* root_first;
+extern Data_Root* root_now;
 extern Data* data_now;
 
-static void pre_process();
+static void floor_splite();
+static void floor_compare();
 static void test();
 
-void door_delete();
-
-void door_main()
+void floor_compare_main()
 {
-	pre_process();
+	floor_splite();
 	//test();
 }
 //按照楼层分割数据，连续两次出现相同楼层信号，才认为楼层改变
-static void pre_process()
+void floor_splite()
 {
-	Floor_Data* floor = new Floor_Data[file_now->Floor_height];
+	Floor_Data* floor_data = NULL;
+	//用数组储存不同的楼层数据
+	floor_data = new Floor_Data[file_now->Floor_height];
+	//获取原始数据
 	vector<_Data*>file_data = file_now->data;
-	int num = file_now->Floor_begin;
+	//定义当前楼层
+	int pos = file_now->Floor_pass.front();
 
 	for (int i = 0; i < file_data.size(); i++)
 	{
-		if (file_data[i]->status[0] == 0 || file_data[i]->status[0] == num)
+		//判断楼层标签,为0或与当前楼层相同，则统计
+		if (file_data[i]->status[0] == 0 || file_data[i]->status[0] == pos)
 		{
-			floor[num - 1].data.push_back(file_now->data[i]);
+			floor_data[pos - 1].data.push_back(file_data[i]);
+			file_data[i]->exist_floor[pos - 1] = 1;
 			continue;
 		}
-		for (int j = i + 1; j < file_data.size(); j++)
-			if (file_data[j]->status[0] != 0)
-				if (file_data[j]->status[0] != num)
-				{
-					num = file_data[i]->status[0];
-					break;
-				}
-				else
-					break;
-		floor[num - 1].data.push_back(file_data[i]);
+		//楼层标签发生变化，判断下一个或下下一个楼层标签与当前的是否相同，相同则认为楼层变化
+		for (int j = i + 1, flag = 0; j < file_data.size(); j++)
+		{
+			if (file_data[j]->status[0] == 0)
+				continue;
+			if (file_data[j]->status[0] == file_data[i]->status[0])
+			{
+				pos = file_data[i]->status[0];
+				break;
+			}
+			else
+				flag++;
+			if (flag == 2)
+				break;
+		}
+		floor_data[pos - 1].data.push_back(file_data[i]);
+		file_data[i]->exist_floor[pos - 1] = 1;
 	}
+	file_now->floor_data = floor_data;
+}
+void floor_compare()
+{
+	vector<Data> all;
 
-	delete[] floor;
-	int a = 0;
 }
 void test()
 {
@@ -71,7 +84,9 @@ void test()
 				}
 	}
 }
-void door_delete()
-{
 
+void floor_compare_delete(Floor_Data*floor_data)
+{
+	if (floor_data != NULL)
+		delete[]floor_data;
 }
