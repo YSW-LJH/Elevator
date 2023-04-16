@@ -1,6 +1,9 @@
 #pragma once
 #include <func.h>
 
+struct _File_Data;
+struct _Tree_Root;
+struct _Data;
 
 //多文件下，用于保存原始文件的结构体
 typedef struct _File_Data
@@ -13,21 +16,26 @@ typedef struct _File_Data
 	_Tree_Root* tree_root = NULL;//指向建立的树
 	int ID_num = 0;//统计ID的种类数
 	int Total_data_num = 0;//统计当前文件数据量
+	int Floor_count = 0;//统计当前文件中可能表示楼层的数据种类
+	int Floor_height = 0;
+	int Floor_begin = 0;
+	int Floor_end = 0;
 }File_Data;
+
 //用于记录ID的结构体
 typedef struct _Tree_Root
 {
 	int ID = -1;
 	int total_type = 0;//已经包含的数据类型数量
 	int pre_data_type = 0;//前置数据种类
-	int count = 0;	//统计Data节点数量
-	unsigned int* Window[DATA_SIZE] = { NULL };//统计Data下每一个滑窗数据
-	int Window_count[DATA_SIZE] = { 0 };
-	Data* child = NULL;
+	int count = 0;	//统计该文件当前ID的数据总数
+	int tag = 0;//ID表示的类型：1 主控，2 轿厢，3 内招(楼层)，4 外招
+	_Data* child = NULL;
 	_Tree_Root* next = NULL;
 	_Tree_Root* pre = NULL;
 	_File_Data* file = NULL;
 }Tree_Root;
+
 //用于记录数据的结构体
 typedef struct _Data
 {
@@ -35,14 +43,17 @@ typedef struct _Data
 	int pos = 1;//记录数据的位置
 	int size = 0;//记录数据位数
 	int count = 1;//统计相同数据出现的次数
-	std::vector<int> tag_every;
+	std::vector<int> tag_all;
 	std::vector<int>::iterator tag_each;
 	_Data* pre = NULL;//指针，指向前一个元素以及后一个元素
 	_Data* next = NULL;
 	_Tree_Root* ID = NULL;
-	int _pre[DATA_SIZE] = { 0 };//记录前后两组数据间对应字节位的差值
-	int tag[5] = { 0 };//标签，用于定义数据类型（楼层、运行、内外召等，具体定义见数组 ）{1.楼层，2.门，3.运行}
+	double percent[DATA_SIZE][2];//计算每半个字节数据的概率值
+	double percent_sum = 0;
+	int status[5] = { 0 };//状态，用于定义数据类型（楼层、运行、内外召等，具体定义见数组 ）{1.楼层，2.门，3.运行}
 }Data;
 
 void tree_main();
 void tree_delete();
+void floor_verify();
+void Data_Restore(std::string out_path);

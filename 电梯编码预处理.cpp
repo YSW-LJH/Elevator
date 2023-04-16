@@ -13,7 +13,6 @@ int main()
 	system("color 03");
 	//system("mkdir out");
 	string filename;
-	int window_size = -1;
 	int mode = -1;
 	int height = -1;
 	string path;
@@ -55,8 +54,6 @@ Single:
 		case 0:
 			cout << "输入当前处理文件的楼层数" << endl;
 			cin >> height;
-			cout << "输入窗口大小(>=1且<=4):" << endl;
-			cin >> window_size;
 			break;
 		case 1:
 			break;
@@ -65,10 +62,6 @@ Single:
 		case 3:
 			cout << "输入当前处理文件的楼层数:" << endl;
 			cin >> height;
-			break;
-		case 4:
-			cout << "输入窗口大小(>=1且<=4):" << endl;
-			cin >> window_size;
 			break;
 		default:
 			cout << "模式输入错误  ＞︿＜  请重新输入模式代码\n";
@@ -83,7 +76,7 @@ Single:
 			return 0;
 		}
 		file.close();
-		if (call_data_process(filename, mode, height, window_size) == 0)
+		if (call_data_process(filename, mode, height) == 0)
 			cout << "处理完成(●'v'●),输出文件名为:" << filename << endl;
 		else
 			cout << "建树失败" << endl;

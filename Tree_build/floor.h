@@ -16,4 +16,3 @@ typedef struct _Floor
 }Floor;
 
 void floor_main();
-void floor_delete();

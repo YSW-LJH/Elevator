@@ -5,7 +5,6 @@ int Floor_height = 0;
 int Floor_begin = 0;
 int Floor_end = 0;
 bool Len_same = true;
-int Window_size = -1;
 string File_path;
 string File_name;
 
@@ -13,11 +12,6 @@ extern Tree_Root* root_now;
 extern Data* data_now;
 extern Tree_Root* root_first;
 
-extern Door* door_now;
-extern Door* door_first;
-
-extern Floor* floors;
-extern Floor* floor_first;
 
 void format(int* data, char* buff, int& flag);//十六进制字符转换为数字
 void getFiles(string path, vector<string>& files);//获取路径下所有*.txt文件
@@ -28,12 +22,11 @@ static void print_c(string filename);
 static void file_process(string filename);//文件处理
 void _delete();
 
-int call(string filename, int mode, int height, int w_size)
+int call(string filename, int mode, int height)
 {
 	File_path = filename;
 	Mode = mode;
 	Floor_height = height;
-	Window_size = w_size;
 	tree_main();
 	if (root_first == NULL)
 		return -1;
@@ -121,39 +114,36 @@ static void print_a(string filename)
 		data_now = root_now->child;
 		a << "ID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << root_now->ID\
 			<< "	type:" << dec << setw(2) << setfill('0') << root_now->total_type;
-		for (int i = 0; i < DATA_SIZE; i++)
-			if (root_now->Window_count[i] > 0)
-				a << "	Window " << dec << i + 1 << " type:" << root_now->Window_count[i];
 		a << endl;
 	}
 	//打印门信号相关信息
-	if (Mode == 0 || Mode == 2)
-	{
-		a << "*******门信号（未完成）*******\n";
-		for (door_now = door_first; door_now; door_now = door_now->next)
-		{
-			a << "\nID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << door_now->root->ID << endl;
-			for (int i = 0; i < door_now->data_sequence.length(); i += 10)
-				a << "	" << door_now->data_sequence.substr(i, 10) << endl;
-		}
-	}
+	//if (Mode == 0 || Mode == 2)
+	//{
+	//	a << "*******门信号（未完成）*******\n";
+	//	for (door_now = door_first; door_now; door_now = door_now->next)
+	//	{
+	//		a << "\nID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << door_now->root->ID << endl;
+	//		for (int i = 0; i < door_now->data_sequence.length(); i += 10)
+	//			a << "	" << door_now->data_sequence.substr(i, 10) << endl;
+	//	}
+	//}
 	//打印楼层信号相关信息
-	if (Mode == 0 || Mode == 3)
-	{
-		a << "********楼层信号********\n";
-		for (floors = floor_first; floors; floors = floors->next)
-		{
-			a << "\nID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << floors->ID << endl;
-			a << "数据量：" << dec << floors->count << " 表示楼层的字节位：" << floors->byte_pos << " 可能的数据定义字节数：" << floors->pre_size << endl;
-			for (int i = 0; i < floors->count; i++)
-			{
-				for (int j = 0; j < DATA_SIZE && floors->data[i][j] != -1; j++)
-					a << " " << hex << uppercase << setw(2) << setfill('0') << floors->data[i][j];
-				a << endl;
-			}
-			a << "**********" << endl;
-		}
-	}
+	//if (Mode == 0 || Mode == 3)
+	//{
+	//	a << "********楼层信号********\n";
+	//	for (floors = floor_first; floors; floors = floors->next)
+	//	{
+	//		a << "\nID:" << hex << uppercase << setw(3 + !Len_same) << setfill('0') << floors->ID << endl;
+	//		a << "数据量：" << dec << floors->count << " 表示楼层的字节位：" << floors->byte_pos << " 可能的数据定义字节数：" << floors->pre_size << endl;
+	//		for (int i = 0; i < floors->count; i++)
+	//		{
+	//			for (int j = 0; j < DATA_SIZE && floors->data[i][j] != -1; j++)
+	//				a << " " << hex << uppercase << setw(2) << setfill('0') << floors->data[i][j];
+	//			a << endl;
+	//		}
+	//		a << "**********" << endl;
+	//	}
+	//}
 	a.close();
 }
 static void print_b(string filename)
@@ -204,24 +194,6 @@ static void print_c(string filename)
 				c << "	type:" << dec << setw(2) << setfill('0') << data_now->pos << endl << endl;
 			}
 		}
-		//输出滑窗信息统计
-		if (Mode == 0 || Mode == 4)
-		{
-			c << "\n***窗口统计信息***" << endl;
-			for (int i = 0; i < DATA_SIZE; i++)
-			{
-				if (root_now->Window_count[i] > 0)
-					c << "Window " << dec << i + 1 << " type:" << root_now->Window_count[i];
-				for (int j = 0; j < root_now->Window_count[i]; j++)
-				{
-					if (j % 10 == 0)
-						c << endl;
-					c << " " << hex << uppercase << setw(2 * Window_size) << setfill('0') << root_now->Window[i][j];
-				}
-				c << endl;
-			}
-		}
-		c << endl;
 	}
 	c.close();
 }
@@ -269,11 +241,9 @@ void _delete()
 {
 	tree_delete();
 	door_delete();
-	floor_delete();
 	Mode = -1;
 	Floor_height = 0;
 	Floor_begin = 0;
 	Floor_end = 0;
 	Len_same = true;
-	Window_size = -1;
 }

@@ -19,12 +19,12 @@
 #define TYPE_NUM 4
 
 #include <Tree.h>
-#include <door.h>
+#include <floor_compare.h>
 #include <floor.h>
 
 using namespace std;
 
-int call(string filename, int mode, int height, int w_size);//调用接口
+int call(string filename, int mode, int height);//调用接口
 void format(int* data, char* buff, int& flag);//十六进制字符转换为数字
 void getFiles(string path, vector<string>& files);//获取路径下所有*.txt文件
 void _delete();

@@ -26,7 +26,7 @@ import Percent;
 import Formate;
 using namespace std;
 
-extern "C" __declspec(dllexport) int CPP_Function(int mode,int window_size,int height)
+extern "C" __declspec(dllexport) int CPP_Function(int mode, int height)
 {
 	system("color 03");
 	//system("mkdir out");
@@ -55,8 +55,7 @@ Single:
 	模式 0 ：输出以下全部内容\n\
 	模式 1 ：输出已完成排序的和统计的全部内容\n\
 	模式 2 ：在1的基础上输出对门信号的判断（未完成）\n\
-	模式 3 ：在1的基础上输出对楼层信号的判断\n\
-	模式 4 ：在1的基础上输出对定义大小滑窗的统计\n";
+	模式 3 ：在1的基础上输出对楼层信号的判断\n";
 	while (1)
 	{
 		cout << "输入文件名:\n";
@@ -68,8 +67,6 @@ Single:
 		case 0:
 			cout << "输入当前处理文件的楼层数" << endl;
 			cin >> height;
-			cout << "输入窗口大小(>=1且<=4):" << endl;
-			cin >> window_size;
 			break;
 		case 1:
 			break;
@@ -79,12 +76,8 @@ Single:
 			cout << "输入当前处理文件的楼层数:" << endl;
 			cin >> height;
 			break;
-		case 4:
-			cout << "输入窗口大小(>=1且<=4):" << endl;
-			cin >> window_size;
-			break;
 		}
-		call_data_process(filename, mode, height, window_size);
+		call_data_process(filename, mode, height);
 	}
 	return 1;
 Multiple:

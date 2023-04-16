@@ -9,9 +9,8 @@ extern string File_name;
 extern int Mode;
 
 extern Tree_Root* root_now;
-extern Data* datas;
+extern Data* data_now;
 extern Tree_Root* root_first;
-extern int Total_data_num;
 
 static void pre_process(string file, int& total, vector<vector<int>>& data);
 static void calculate_compare();
@@ -72,16 +71,16 @@ static void pre_process(string file, int& total, vector<vector<int>>& data)
 	tree_main();
 	if (root_first == NULL)
 		return;
-	total = Total_data_num;
+	total = root_first->file->Total_data_num;
 	vector<int>temp_data(4, 0);
 	for (root_now = root_first; root_now; root_now = root_now->next)
 	{
 		int pre_data[2] = { -1 };
 		bool pre_same = false;
 		int count = 0;
-		for (datas = root_now->child; datas; datas = datas->next)
+		for (data_now = root_now->child; data_now; data_now = data_now->next)
 		{
-			if (pre_data[0] != datas->com_data[0] || pre_data[1] != datas->com_data[1])
+			if (pre_data[0] != data_now->com_data[0] || pre_data[1] != data_now->com_data[1])
 				pre_same = false;
 			if (!pre_same)
 			{
@@ -93,12 +92,12 @@ static void pre_process(string file, int& total, vector<vector<int>>& data)
 					temp_data[3] = count;
 					data.push_back(temp_data);
 				}
-				pre_data[0] = datas->com_data[0];
-				pre_data[1] = datas->com_data[1];
+				pre_data[0] = data_now->com_data[0];
+				pre_data[1] = data_now->com_data[1];
 				count = 0;
 				pre_same = true;
 			}
-			count += datas->count;
+			count += data_now->count;
 		}
 		temp_data[0] = root_now->ID;
 		temp_data[1] = pre_data[0];

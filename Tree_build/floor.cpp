@@ -1,12 +1,10 @@
 #include <floor.h>
 
-Floor* floors = NULL;
-Floor* floor_first = NULL;
-
 extern Tree_Root* root_now;
 extern Data* data_now;
 extern Tree_Root* root_first;
-extern int ID_num;
+extern File_Data* file_now;
+extern File_Data* file_first;
 
 extern int Mode;
 extern int Floor_height;
@@ -14,96 +12,23 @@ extern string File_name;
 extern string File_path;
 
 static void pre_process();
-static void pre_process_2();
-static void pre_process_2_help(vector<vector<int>>& data, int ID, int pre_size);
-static void new_node(Tree_Root* root, Data* data, int count, int pos, int pre_num, int sub_num);//pre_process_help
-static void floor_merge();
-static bool node_compare(Floor* A, Floor* B);
+static void pre_process_help(vector<Data*>& data, int ID, int pre_size);
 
-void floor_delete();
 
 void floor_main()
 {
-	pre_process_2();
-	if (floor_first == NULL)
+	pre_process();
+	
+	if (file_now == NULL)
 	{
 		cout << "未找到可能的楼层数据！！！\n";
 		return;
 	}
-	//合并相同数据
-	//floor_merge();
 }
-//第一种处理方式，直接查找递增数列--竹韵数据遇到了问题.
+//统计一整列的数据，然后再找递增
 static void pre_process()
 {
-	for (root_now = root_first; root_now; root_now = root_now->next)
-		for (int i = 0; i <= 4; i++)//目前按照定义数据含义的位数小于等于4位来算
-		{
-			int temp_data[DATA_SIZE] = { 0 };//记录临时数据
-			bool pre_same = false;//记录前部数据是否相同
-			int count[DATA_SIZE] = { 0 };//计数
-			Data* data_temp[DATA_SIZE] = { NULL };//保留指针
-			data_now = root_now->child;
-			for (; data_now; )
-			{
-				//更新需要比对的数据
-				if (pre_same == false)
-				{
-					//初始化数据
-					for (int j = 0; j < i; j++)
-						temp_data[j] = data_now->com_data[j];
-					for (int j = 0; j < DATA_SIZE; j++)
-						data_temp[j] = data_now;
-					memset(count, 0, sizeof(count));
-					pre_same = true;
-					data_now = data_now->next;
-					//下一节点不存在则退出
-					if (data_now == NULL)
-						break;
-					for (int j = i; j < DATA_SIZE; j++)
-						temp_data[j] = data_now->_pre[j];
-				}
-				//比对前部数据是否相同, 不同则更新数据 ,
-				for (int j = 0; j < i; j++)
-					if (temp_data[j] != data_now->com_data[j])
-					{
-						for (int j = i; j < DATA_SIZE; j++)
-							if (count[j] + 1 == Floor_height)
-								new_node(root_now, data_temp[j], count[j], j, i, temp_data[j]);
-						pre_same = false;
-						break;
-					}
-				if (pre_same == false)
-					continue;
-				//判断前部数据相同，开始进行统计
-				if (i == 3 && data_now->com_data[0] == 0x1D && data_now->com_data[1] == 0x00 && data_now->com_data[2] == 0x47)
-					data_now = data_now;
-				for (int j = i; j < DATA_SIZE; j++)
-				{
-					if (data_now->_pre[j] == 0)
-						continue;
-					if (temp_data[j] == data_now->_pre[j])
-						count[j]++;
-					else
-					{
-						if (count[j] + 1 == Floor_height)
-							new_node(root_now, data_temp[j], count[j], j, i, temp_data[j]);
-						count[j] = 1;
-						data_temp[j] = data_now->pre;
-						temp_data[j] = data_now->_pre[j];
-					}
-				}
-				data_now = data_now->next;
-			}
-			for (int j = i; j < DATA_SIZE; j++)
-				if (count[j] + 1 == Floor_height)
-					new_node(root_now, data_temp[j], count[j], j, i, temp_data[j]);
-		}
-}
-//第二种处理方式，统计一整列的数据，然后再找递增
-static void pre_process_2()
-{
-	vector<vector<int>>data(8, vector<int>(0, 0));
+	vector<Data*>data;
 	for (int pre_size = 0; pre_size <= 4; pre_size++)
 	{
 		int* pre_data = new int[pre_size];
@@ -113,6 +38,10 @@ static void pre_process_2()
 			bool pre_same = false;
 			for (data_now = root_now->child; data_now; data_now = data_now->next)
 			{
+				//打过楼层标签的数据跳过
+				if (data_now->tag_all.size() > 0)
+					if (data_now->tag_all[0] % 10 == 1)
+						continue;
 				//判断前部数据是否相同
 				for (int i = 0; i < pre_size; i++)
 					if (pre_data[i] != data_now->com_data[i])
@@ -123,41 +52,51 @@ static void pre_process_2()
 				//前置数据不同，更新前置数据并处理现在已采集的数据
 				if (!pre_same)
 				{
-					pre_process_2_help(data, root_now->ID,pre_size);
+					pre_process_help(data, root_now->ID,pre_size);
 					for (int i = 0; i < pre_size; i++)
 						pre_data[i] = data_now->com_data[i];
 					pre_same = true;
 				}
 				//新数据放入向量
-				for (int i = 0; i < DATA_SIZE; i++)
-					data[i].push_back(data_now->com_data[i]);
+				data.push_back(data_now);
 			}
-			pre_process_2_help(data, root_now->ID,pre_size);
+			pre_process_help(data, root_now->ID,pre_size);
 		}
 		delete[]pre_data;
 	}
 }
 //判断数据是否符合楼层
-static void pre_process_2_help(vector<vector<int>>& data, int ID, int pre_size)
+static void pre_process_help(vector<Data*>& data, int ID, int pre_size)
 {
-	vector<int>temp;
+	if (data.size() == 0)
+		return;
 	for (int pos = pre_size; pos < DATA_SIZE; pos++)
 	{
-		temp = data[pos];
+		//判断该位是否打过楼层标签
+		if (data[0]->tag_all.size() > 0)
+			if (data[0]->tag_all[0] % 10 == 1)
+				if ((data[0]->tag_all[0] / 10) % 10 == pos + 1)
+					continue;
+		//采集pos位的数据
+		vector<int>temp;
+		for (auto i : data)
+			temp.push_back(i->com_data[pos]);
 		if (temp.size() <= 1)
 			continue;
 		//排序，合并相同的数据
 		sort(temp.begin(), temp.end());
 		vector<int>::iterator a = temp.begin();
-		while (a != temp.end())
+		while ((a + 1) != temp.end())
 		{
 			if (*a == *(a + 1))
 				a = temp.erase(a);
 			else a++;
 		}
-		if (temp.size() != Floor_height)
+		//判断数据是否为等差数列且至少有三组数据
+		if (temp.size() < Floor_height)
 			continue;
-		//判断数据是否为等差数列,PS: 未判断数据个数是否与输入文件的楼层数相同。
+		//if (temp.size() < 3)
+		//	continue;
 		int flag = temp[1] - temp[0];
 		int same = 2;
 		a = temp.begin();
@@ -172,122 +111,89 @@ static void pre_process_2_help(vector<vector<int>>& data, int ID, int pre_size)
 				same++;
 		if (same == 0)
 			continue;
-		//判断数据代表楼层，加入节点
-		Floor* temp_floor = new Floor();
-		temp_floor->pre_size = pre_size;
-		temp_floor->byte_pos = pos + 1;
-		temp_floor->height = Floor_height;
-		temp_floor->count = same;
-		temp_floor->ID = ID;
-		temp_floor->sub_num = flag;
-		for (int i = 0; i < Floor_height; i++)
-		{
-			vector<int>temp_0;
-			for (int j = 0; j < DATA_SIZE; j++)
-				temp_0.push_back(data[j][i]);
-			temp_floor->data.push_back(temp_0);
-		}
-		//更新节点结构
-		if (floor_first == NULL)
-		{
-			floor_first = temp_floor;
-			floors = temp_floor;
-		}
-		else
-		{
-			floors->next = temp_floor;
-			temp_floor->pre = floors;
-			floors = floors->next;
-		}
+		//判断递增数列是否和楼层高度相同
+		if (same != Floor_height)
+			continue;
+		//判断数据代表楼层，打标签
+		file_now->Floor_count++;
+		int floor_temp = file_now->Floor_begin;
+		int floor_flag = data[0]->com_data[pos];
+		for (auto i : data)
+			i->tag_all.push_back(file_now->Floor_count * 1000 + pre_size * 100 + (pos + 1) * 10 + 1);
 	}
 	//向量初始化
 	data.clear();
-	data.insert(data.begin(), 8, vector<int>(0, 0));
 }
-//创建新节点，仅第一种处理方式使用
-static void new_node(Tree_Root* root, Data* data, int count, int pos, int pre_num, int sub_num)
+//数据验证
+void floor_verify()
 {
-	Floor* temp = new Floor();
-	temp->file_path = File_path;
-	temp->ID = root->ID;
-	temp->count = count + 1;
-	temp->byte_pos = pos + 1;
-	temp->pre_size = pre_num;
-	temp->sub_num = sub_num;
-	temp->height = Floor_height;
-	temp->data.push_back(vector<int>(0, 0));
-	for (int i = 0; i < DATA_SIZE; i++)
-		temp->data[0].push_back(data->com_data[i]);
-	data = data->next;
-	for (int i = 1; i <= count; data = data->next)
-		if (data->_pre[pos] != 0)
-		{
-			vector<int>temp_data;
-			for (int j = 0; j < DATA_SIZE; j++)
-				temp_data.push_back(data->com_data[j]);
-			temp->data.push_back(temp_data);
-			i++;
-		}
-	//如果头节点为空，更新头节点
-	if (floor_first == NULL)
-	{
-		floor_first = temp;
-		floors = temp;
+	if (file_now->Floor_count == 0)
 		return;
-	}
-	floors->next = temp;
-	temp->pre = floors;
-	floors = floors->next;
-}
-//节点合并--单文件处理时不使用，多文件处理的最后一步使用，取短原则
-static void floor_merge()
-{
-	for (floors = floor_first; floors && floors->next; floors = floors->next)
-		for (Floor* temp = floors->next; temp;)
-			if (node_compare(floors, temp))
-			{
-				Floor* temp_del = temp;
-				temp = temp->next;
-				if (floors->pre_size < temp_del->pre_size)
+	int* data_temp = new int[file_now->Floor_count] {0};//用于存放相同楼层标签的前一个数据
+	int* D_value = new int[file_now->Floor_count] {0};//用于存放每个楼层标签相邻数据间差值
+	int* floor = new int[file_now->Floor_count] {0};//用于判断每个楼层标签当前数据表示的楼层
+	for (auto data : file_now->data)
+		if (data->tag_all.size() > 0)
+			for (auto num : data->tag_all)
+				if (num % 10 == 1)//判断为楼层标签
 				{
-					floors->pre_size = temp_del->pre_size;
-					floors->file_path = temp_del->file_path;
+					int a = num / 1000 - 1;//表示第几次打的标签
+					int b = (num % 100) / 10 - 1;//表示数据的第几位表示楼层
+					int c = data->com_data[b] - data_temp[a];//表示增量
+					if (data_temp[a] == -1)//如果已经判断该数据无效，则继续比较下一个
+						continue;
+					//判断当前数据表示的楼层
+					if (floor[a] == 0)
+					{
+						floor[a] = file_now->Floor_begin;
+						data->status[0] = floor[a];
+					}
+					else
+						if (c != 0)
+						{
+							floor[a] += file_now->Floor_begin < file_now->Floor_end ? 1 : -1;
+							data->status[0] = floor[a];
+						}
+						else
+							data->status[0] = floor[a];
+					//初始化数据
+					if (data_temp[a] == 0)
+					{
+						data_temp[a] = data->com_data[b];
+						continue;
+					}
+					if (D_value[a] == 0)
+					{
+						data_temp[a] = data->com_data[b];
+						D_value[a] = c;
+						continue;
+					}
+					//
+					data_temp[a] = data->com_data[b];
+					//判断该数据与前一个数据是否等差或者相同
+					if (c != 0 && c != D_value[a] && c != (-D_value[a]))
+					{
+						data_temp[a] = -1;
+						file_now->Floor_count--;
+					}
 				}
+	//遍历树，删除无效楼层标签
+	for (root_now = file_now->tree_root; root_now; root_now = root_now->next)
+		for (data_now = root_now->child; data_now; data_now = data_now->next)
+			for (vector<int>::iterator data = data_now->tag_all.begin(); data != data_now->tag_all.end(); )
+				if (*data % 10 == 1)
+					if (data_temp[*data / 1000 - 1] == -1)
+					{
+						data = data_now->tag_all.erase(data);
+						data_now->status[0] = 0;
+					}
+					else
+						data++;
+				else
+					break;
+	delete[]data_temp;
+	delete[]D_value;
+	delete[]floor;
+}
 
-				temp_del->pre->next = temp_del->next;
-				if (temp_del->next)
-					temp_del->next->pre = temp_del->pre;
-				delete temp_del;
-			}
-			else
-				temp = temp->next;
-}
-//比较两个节点之间的内容
-static bool node_compare(Floor* A, Floor* B)
-{
-	if (A->ID != B->ID)
-		return false;
-	for (int i = 0; i < DATA_SIZE; i++)
-		if (A->data[0][i] != B->data[0][i])
-			return false;
-	if (A->byte_pos != B->byte_pos)
-		return false;
-	if (A->count != B->count)
-		return false;
-	if (A->sub_num != B->sub_num)
-		return false;
-	return true;
-}
-//删除数据
-void floor_delete()
-{
-	floors = floor_first;
-	while (floors)
-	{
-		Floor* temp = floors;
-		floors = floors->next;
-		delete temp;
-	}
-	floors = NULL;
-	floor_first = NULL;
-}
+
