@@ -10,6 +10,7 @@
 #include <io.h>
 #include <list>
 #include <sstream>
+#include <map>
 //#include <stdafx.h>
 
 #define SIZE 200 //一行数据的字符数
@@ -18,16 +19,14 @@
 #define NULL 0
 #define TYPE_NUM 4
 
-#include <Tree.h>
-#include <floor_compare.h>
-#include <floor.h>
-
 using namespace std;
 
-int call(string filename, int mode, int height);//调用接口
+#include <tree.h>
+#include <floor.h>
+#include <door.h>
+#include <floor_compare.h>
+
+map<string,string> call(string path);//调用接口
 void format(int* data, char* buff, int& flag);//十六进制字符转换为数字
 void getFiles(string path, vector<string>& files);//获取路径下所有*.txt文件
 void _delete();
-
-extern void floor_main();
-extern void tree_main();

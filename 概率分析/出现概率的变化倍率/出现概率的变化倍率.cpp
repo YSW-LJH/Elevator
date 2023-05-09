@@ -4,13 +4,9 @@ module;
 #include <func.h>
 module Percent;
 
-extern string File_path;
-extern string File_name;
-extern int Mode;
-
-extern Tree_Root* root_now;
+extern Data_Root* root_now;
 extern Data* data_now;
-extern Tree_Root* root_first;
+extern Data_Root* root_first;
 
 static void pre_process(string file, int& total, vector<vector<int>>& data);
 static void calculate_compare();
@@ -28,8 +24,9 @@ int total_2 = 0;
 
 //using namespace std;
 
-string percent_main(string path)
+void percent_main(string path)
 {
+	return;
 	string path_out;
 	vector<string>files;
 	path_out = path + "\\out";
@@ -48,7 +45,7 @@ string percent_main(string path)
 		data_1.clear();
 	}
 	print(path_out.append("\\total.txt"), data_all, total_all);
-	return ("输出文件位于“" + path_out + "”\n");
+	//return ("输出文件位于“" + path_out + "”\n");
 }
 //int main()
 //{
@@ -67,8 +64,7 @@ string percent_main(string path)
 //}
 static void pre_process(string file, int& total, vector<vector<int>>& data)
 {
-	File_path = File_name = file;
-	tree_main();
+	tree_main(file);
 	if (root_first == NULL)
 		return;
 	total = root_first->file->Total_data_num;
@@ -167,8 +163,8 @@ static void print(string& file_out, vector<vector<int>>& data, int& total)
 	out << "ID	 Byte_1_2	 Percentage\n";
 	for (int i = 0; i < data.size(); i++)
 	{
-		out << hex << uppercase << setw(2) << setfill('0') << data[i][0] << "	 "\
-			<< hex << uppercase << setw(2) << setfill('0') << data[i][1] << "  "\
+		out << hex << uppercase << setw(2) << setfill('0') << data[i][0] << "	"\
+			<< hex << uppercase << setw(2) << setfill('0') << data[i][1] << "	"\
 			<< hex << uppercase << setw(2) << setfill('0') << data[i][2] << "	"\
 			<< dec << (double)data[i][3] / total << endl;
 	}

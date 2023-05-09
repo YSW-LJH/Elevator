@@ -1,19 +1,14 @@
 #include <floor.h>
 
-extern Tree_Root* root_now;
+extern Data_Root* root_now;
 extern Data* data_now;
-extern Tree_Root* root_first;
+extern Data_Root* root_first;
 extern File_Data* file_now;
 extern File_Data* file_first;
 
-extern int Mode;
-extern int Floor_height;
-extern string File_name;
-extern string File_path;
 
 static void pre_process();
 static void pre_process_help(vector<Data*>& data, int ID, int pre_size);
-
 
 void floor_main()
 {
@@ -21,11 +16,11 @@ void floor_main()
 	
 	if (file_now == NULL)
 	{
-		cout << "Î´ÕÒµ½¿ÉÄÜµÄÂ¥²ãÊı¾İ£¡£¡£¡\n";
+		cout << "æœªæ‰¾åˆ°å¯èƒ½çš„æ¥¼å±‚æ•°æ®ï¼ï¼ï¼\n";
 		return;
 	}
 }
-//Í³¼ÆÒ»ÕûÁĞµÄÊı¾İ£¬È»ºóÔÙÕÒµİÔö
+//ç»Ÿè®¡ä¸€æ•´åˆ—çš„æ•°æ®ï¼Œç„¶åå†æ‰¾é€’å¢
 static void pre_process()
 {
 	vector<Data*>data;
@@ -38,18 +33,18 @@ static void pre_process()
 			bool pre_same = false;
 			for (data_now = root_now->child; data_now; data_now = data_now->next)
 			{
-				//´ò¹ıÂ¥²ã±êÇ©µÄÊı¾İÌø¹ı
+				//æ‰“è¿‡æ¥¼å±‚æ ‡ç­¾çš„æ•°æ®è·³è¿‡
 				if (data_now->tag_all.size() > 0)
 					if (data_now->tag_all[0] % 10 == 1)
 						continue;
-				//ÅĞ¶ÏÇ°²¿Êı¾İÊÇ·ñÏàÍ¬
+				//åˆ¤æ–­å‰éƒ¨æ•°æ®æ˜¯å¦ç›¸åŒ
 				for (int i = 0; i < pre_size; i++)
 					if (pre_data[i] != data_now->com_data[i])
 					{
 						pre_same = false;
 						break;
 					}
-				//Ç°ÖÃÊı¾İ²»Í¬£¬¸üĞÂÇ°ÖÃÊı¾İ²¢´¦ÀíÏÖÔÚÒÑ²É¼¯µÄÊı¾İ
+				//å‰ç½®æ•°æ®ä¸åŒï¼Œæ›´æ–°å‰ç½®æ•°æ®å¹¶å¤„ç†ç°åœ¨å·²é‡‡é›†çš„æ•°æ®
 				if (!pre_same)
 				{
 					pre_process_help(data, root_now->ID,pre_size);
@@ -57,7 +52,7 @@ static void pre_process()
 						pre_data[i] = data_now->com_data[i];
 					pre_same = true;
 				}
-				//ĞÂÊı¾İ·ÅÈëÏòÁ¿
+				//æ–°æ•°æ®æ”¾å…¥å‘é‡
 				data.push_back(data_now);
 			}
 			pre_process_help(data, root_now->ID,pre_size);
@@ -65,25 +60,25 @@ static void pre_process()
 		delete[]pre_data;
 	}
 }
-//ÅĞ¶ÏÊı¾İÊÇ·ñ·ûºÏÂ¥²ã
+//åˆ¤æ–­æ•°æ®æ˜¯å¦ç¬¦åˆæ¥¼å±‚
 static void pre_process_help(vector<Data*>& data, int ID, int pre_size)
 {
 	if (data.size() == 0)
 		return;
 	for (int pos = pre_size; pos < DATA_SIZE; pos++)
 	{
-		//ÅĞ¶Ï¸ÃÎ»ÊÇ·ñ´ò¹ıÂ¥²ã±êÇ©
+		//åˆ¤æ–­è¯¥ä½æ˜¯å¦æ‰“è¿‡æ¥¼å±‚æ ‡ç­¾
 		if (data[0]->tag_all.size() > 0)
 			if (data[0]->tag_all[0] % 10 == 1)
 				if ((data[0]->tag_all[0] / 10) % 10 == pos + 1)
 					continue;
-		//²É¼¯posÎ»µÄÊı¾İ
+		//é‡‡é›†posä½çš„æ•°æ®
 		vector<int>temp;
 		for (auto i : data)
 			temp.push_back(i->com_data[pos]);
 		if (temp.size() <= 1)
 			continue;
-		//ÅÅĞò£¬ºÏ²¢ÏàÍ¬µÄÊı¾İ
+		//æ’åºï¼Œåˆå¹¶ç›¸åŒçš„æ•°æ®
 		sort(temp.begin(), temp.end());
 		vector<int>::iterator a = temp.begin();
 		while ((a + 1) != temp.end())
@@ -92,8 +87,8 @@ static void pre_process_help(vector<Data*>& data, int ID, int pre_size)
 				a = temp.erase(a);
 			else a++;
 		}
-		//ÅĞ¶ÏÊı¾İÊÇ·ñÎªµÈ²îÊıÁĞÇÒÖÁÉÙÓĞÈı×éÊı¾İ
-		if (temp.size() < Floor_height)
+		//åˆ¤æ–­æ•°æ®æ˜¯å¦ä¸ºç­‰å·®æ•°åˆ—ä¸”è‡³å°‘æœ‰ä¸‰ç»„æ•°æ®
+		if (temp.size() < file_now->Floor_height)
 			continue;
 		//if (temp.size() < 3)
 		//	continue;
@@ -111,52 +106,78 @@ static void pre_process_help(vector<Data*>& data, int ID, int pre_size)
 				same++;
 		if (same == 0)
 			continue;
-		//ÅĞ¶ÏµİÔöÊıÁĞÊÇ·ñºÍÂ¥²ã¸ß¶ÈÏàÍ¬
-		if (same != Floor_height)
+
+		//åˆ¤æ–­é€’å¢æ•°åˆ—æ˜¯å¦å’Œæ¥¼å±‚é«˜åº¦ç›¸åŒ
+		if (same != file_now->Floor_height)
 			continue;
-		//ÅĞ¶ÏÊı¾İ´ú±íÂ¥²ã£¬´ò±êÇ©
+		//åˆ¤æ–­æ•°æ®ä»£è¡¨æ¥¼å±‚ï¼Œæ‰“æ ‡ç­¾
 		file_now->Floor_count++;
-		int floor_temp = file_now->Floor_begin;
-		int floor_flag = data[0]->com_data[pos];
+
 		for (auto i : data)
-			i->tag_all.push_back(file_now->Floor_count * 1000 + pre_size * 100 + (pos + 1) * 10 + 1);
+			i->tag_all.push_back(file_now->Floor_count * 1000 + pre_size * 100 + (pos + 1) * 10 + 1);//ç¬¬å‡ ä¸ªæ ‡ç­¾+å‰ç½®å­—èŠ‚ä½+æ¥¼å±‚ä¿¡å·ä½+å®šä¹‰æ¥¼å±‚ä¿¡å·
 	}
-	//ÏòÁ¿³õÊ¼»¯
+	//å‘é‡åˆå§‹åŒ–
 	data.clear();
 }
-//Êı¾İÑéÖ¤
+//æ•°æ®éªŒè¯
 void floor_verify()
 {
 	if (file_now->Floor_count == 0)
 		return;
-	int* data_temp = new int[file_now->Floor_count] {0};//ÓÃÓÚ´æ·ÅÏàÍ¬Â¥²ã±êÇ©µÄÇ°Ò»¸öÊı¾İ
-	int* D_value = new int[file_now->Floor_count] {0};//ÓÃÓÚ´æ·ÅÃ¿¸öÂ¥²ã±êÇ©ÏàÁÚÊı¾İ¼ä²îÖµ
-	int* floor = new int[file_now->Floor_count] {0};//ÓÃÓÚÅĞ¶ÏÃ¿¸öÂ¥²ã±êÇ©µ±Ç°Êı¾İ±íÊ¾µÄÂ¥²ã
+	int* data_temp = new int[file_now->Floor_count] {0};//ç”¨äºå­˜æ”¾ç›¸åŒæ¥¼å±‚æ ‡ç­¾çš„å‰ä¸€ä¸ªæ•°æ®
+	int* D_value = new int[file_now->Floor_count] {0};//ç”¨äºå­˜æ”¾æ¯ä¸ªæ¥¼å±‚æ ‡ç­¾ç›¸é‚»æ•°æ®é—´å·®å€¼
+	int* floor = new int[file_now->Floor_count] {0};//ç”¨äºåˆ¤æ–­æ¯ä¸ªæ¥¼å±‚æ ‡ç­¾å½“å‰æ•°æ®è¡¨ç¤ºçš„æ¥¼å±‚
+	int** floor_signal = new int*[file_now->Floor_count];//ç”¨äºè®°å½•æ¥¼å±‚ä¿¡å·è¯¦ç»†ä¿¡æ¯
+	for (int i = 0; i < file_now->Floor_count; i++)//ID å­—èŠ‚*4 POS MIN MAX Increment
+	{
+		floor_signal[i] = new int[9];
+		memset(floor_signal[i], -1, sizeof(int)*9);
+	}
 	for (auto data : file_now->data)
 		if (data->tag_all.size() > 0)
 			for (auto num : data->tag_all)
-				if (num % 10 == 1)//ÅĞ¶ÏÎªÂ¥²ã±êÇ©
+				if (num % 10 == 1)//åˆ¤æ–­ä¸ºæ¥¼å±‚æ ‡ç­¾
 				{
-					int a = num / 1000 - 1;//±íÊ¾µÚ¼¸´Î´òµÄ±êÇ©
-					int b = (num % 100) / 10 - 1;//±íÊ¾Êı¾İµÄµÚ¼¸Î»±íÊ¾Â¥²ã
-					int c = data->com_data[b] - data_temp[a];//±íÊ¾ÔöÁ¿
-					if (data_temp[a] == -1)//Èç¹ûÒÑ¾­ÅĞ¶Ï¸ÃÊı¾İÎŞĞ§£¬Ôò¼ÌĞø±È½ÏÏÂÒ»¸ö
+					int a = num / 1000 - 1;//è¡¨ç¤ºç¬¬å‡ æ¬¡æ‰“çš„æ ‡ç­¾
+					int b = (num % 100) / 10 - 1;//è¡¨ç¤ºæ•°æ®çš„ç¬¬å‡ ä½è¡¨ç¤ºæ¥¼å±‚
+					int c = data->com_data[b] - data_temp[a];//è¡¨ç¤ºå¢é‡
+					if (data_temp[a] == -1)//å¦‚æœå·²ç»åˆ¤æ–­è¯¥æ•°æ®æ— æ•ˆï¼Œåˆ™ç»§ç»­æ¯”è¾ƒä¸‹ä¸€ä¸ª
 						continue;
-					//ÅĞ¶Ïµ±Ç°Êı¾İ±íÊ¾µÄÂ¥²ã
+					//æ›´æ–°è¯¥æ ‡ç­¾çš„è®°å½•çš„æ¥¼å±‚ä¿¡å·
+					//è®°å½•ID
+					if (floor_signal[a][0] == -1)
+						floor_signal[a][0] = data->ID->ID;
+					//è®°å½•ä¸å˜å­—èŠ‚
+					for (int i = 0; i < (num / 100) % 10; i++)
+						if (floor_signal[a][i + 1] == -1)
+							floor_signal[a][i + 1] = data->com_data[i];
+					//è®°å½•æ¥¼å±‚ä¿¡å·ä½
+					if (floor_signal[a][5] == -1)
+						floor_signal[a][5] = b + 1;
+					//è®°å½•ä¿¡å·æœ€å°å€¼
+					if (floor_signal[a][6] == -1 || floor_signal[a][6] > data->com_data[b])
+						floor_signal[a][6] = data->com_data[b];
+					//è®°å½•ä¿¡å·æœ€å¤§å€¼
+					if (floor_signal[a][7] == -1 || floor_signal[a][7] < data->com_data[b])
+						floor_signal[a][7] = data->com_data[b];
+					//è®°å½•ä¿¡å·å¢é‡
+					if (c != 0)
+						floor_signal[a][8] = c;
+					//åˆ¤æ–­å½“å‰æ•°æ®è¡¨ç¤ºçš„æ¥¼å±‚
 					if (floor[a] == 0)
 					{
-						floor[a] = file_now->Floor_begin;
+						floor[a] = file_now->Floor_pass.front();
 						data->status[0] = floor[a];
 					}
 					else
 						if (c != 0)
 						{
-							floor[a] += file_now->Floor_begin < file_now->Floor_end ? 1 : -1;
+							floor[a] += file_now->direction ? 1 : -1;
 							data->status[0] = floor[a];
 						}
 						else
 							data->status[0] = floor[a];
-					//³õÊ¼»¯Êı¾İ
+					//åˆå§‹åŒ–æ•°æ®
 					if (data_temp[a] == 0)
 					{
 						data_temp[a] = data->com_data[b];
@@ -170,14 +191,57 @@ void floor_verify()
 					}
 					//
 					data_temp[a] = data->com_data[b];
-					//ÅĞ¶Ï¸ÃÊı¾İÓëÇ°Ò»¸öÊı¾İÊÇ·ñµÈ²î»òÕßÏàÍ¬
+					//åˆ¤æ–­è¯¥æ•°æ®ä¸å‰ä¸€ä¸ªæ•°æ®æ˜¯å¦ç­‰å·®æˆ–è€…ç›¸åŒ
 					if (c != 0 && c != D_value[a] && c != (-D_value[a]))
 					{
 						data_temp[a] = -1;
 						file_now->Floor_count--;
+						continue;
 					}
 				}
-	//±éÀúÊ÷£¬É¾³ıÎŞĞ§Â¥²ã±êÇ©
+	//å°†æ¥¼æ¥¼å±‚ä¿¡å·åŠ å…¥File_Dataç»“æ„ä½“
+	string signal = "";
+	for (int i = 0; i < file_now->Floor_count; i++)
+		if (data_temp[i] != -1)
+		{
+			for (int j = 0; j < 9; j++)
+				if (floor_signal[i][j] != -1)
+				{
+					if (j == 0) signal += "ID&Bit: ";
+					if (j == 5)signal += "Pos: ";
+					if (j == 6)signal += "Range: ";
+					if (j == 8)signal += "Increment: ";
+					if (j < 5 || j == 6 || j == 7)
+					{
+						string hexx = "";
+						char a = 0;
+						int flag = 0;
+						for (int k = floor_signal[i][j]; k > 0; k /= 16, flag++)
+							if (k % 16 < 10)
+							{
+								a = '0' + k % 16;
+								hexx.insert(0, 1, a);
+							}
+							else
+							{
+								a = 'A' + k % 16 - 10;
+								hexx.insert(0, 1, a);
+							}
+						if (flag < 2 && j>0)
+							while (++flag <= 2)
+								hexx.insert(0, 1, '0');
+						if (flag < 3 && j == 0)
+							while (++flag <= 3)
+								hexx.insert(0, 1, '0');
+						signal += hexx + ' ';
+					}
+					else
+						signal += to_string(floor_signal[i][j]) + ' ';
+				}
+			signal += '\n';
+		}
+	file_now->Signal["Floor"] = signal;
+	//éå†æ ‘ï¼Œåˆ é™¤æ— æ•ˆæ¥¼å±‚æ ‡ç­¾
 	for (root_now = file_now->tree_root; root_now; root_now = root_now->next)
 		for (data_now = root_now->child; data_now; data_now = data_now->next)
 			for (vector<int>::iterator data = data_now->tag_all.begin(); data != data_now->tag_all.end(); )
@@ -194,6 +258,9 @@ void floor_verify()
 	delete[]data_temp;
 	delete[]D_value;
 	delete[]floor;
+	for (int i = 0; i < file_now->Floor_count; i++)
+		delete[]floor_signal[i];
+	delete[]floor_signal;
 }
 
 

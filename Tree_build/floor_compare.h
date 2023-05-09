@@ -1,12 +1,12 @@
 #pragma once
 #include <func.h>
 
-extern struct _Data;
+struct _Data;
 
 typedef struct _Floor_Data
 {
-	std::vector<_Data*> data;
+	vector<_Data*> data;
 }Floor_Data;
 
-void door_main();
-void door_delete();
+void floor_compare_main();
+void floor_compare_delete(Floor_Data* floor_data);
