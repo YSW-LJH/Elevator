@@ -5,8 +5,6 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "电梯编码预处理", "电梯编码预处理.vcxproj", "{F096835C-2040-4609-9F3C-3D74993B4985}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Elevator_floor", "Elevator_floor\Elevator_floor.vcxproj", "{908C08CE-627C-47FC-9B95-E52774E9353F}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "出现概率的变化倍率", "概率分析\出现概率的变化倍率\出现概率的变化倍率.vcxproj", "{4547D31B-4D83-4500-B1FB-9CC169201045}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "文本文件处理", "文本文件处理\文本文件处理.vcxproj", "{5EE8A10E-3A4C-4A3F-BC59-4BA7A2EA265C}"
@@ -19,7 +17,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CS调用链接库", "CS调�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "UnitTest\UnitTest.vcxproj", "{CE40A611-5CA9-4FCE-8008-7E23EBA76191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechineLeaning", "MechineLeaning\MechineLeaning.csproj", "{197018CA-F6D9-4E77-969C-2BE4141DFBBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MechineLeaning", "MechineLeaning\MechineLeaning.csproj", "{197018CA-F6D9-4E77-969C-2BE4141DFBBA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App", "App\App.csproj", "{01C1C73C-AB52-4218-936D-0DCF391572EB}"
 EndProject
@@ -51,20 +49,6 @@ Global
 		{F096835C-2040-4609-9F3C-3D74993B4985}.Release|x64.Build.0 = Release|x64
 		{F096835C-2040-4609-9F3C-3D74993B4985}.Release|x86.ActiveCfg = Release|Win32
 		{F096835C-2040-4609-9F3C-3D74993B4985}.Release|x86.Build.0 = Release|Win32
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Debug|Any CPU.Build.0 = Debug|x64
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Debug|ARM64.ActiveCfg = Debug|x64
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Debug|x64.ActiveCfg = Debug|x64
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Debug|x64.Build.0 = Debug|x64
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Debug|x86.ActiveCfg = Debug|Win32
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Debug|x86.Build.0 = Debug|Win32
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Release|Any CPU.ActiveCfg = Release|x64
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Release|Any CPU.Build.0 = Release|x64
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Release|ARM64.ActiveCfg = Release|x64
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Release|x64.ActiveCfg = Release|x64
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Release|x64.Build.0 = Release|x64
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Release|x86.ActiveCfg = Release|Win32
-		{908C08CE-627C-47FC-9B95-E52774E9353F}.Release|x86.Build.0 = Release|Win32
 		{4547D31B-4D83-4500-B1FB-9CC169201045}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{4547D31B-4D83-4500-B1FB-9CC169201045}.Debug|Any CPU.Build.0 = Debug|x64
 		{4547D31B-4D83-4500-B1FB-9CC169201045}.Debug|ARM64.ActiveCfg = Debug|x64

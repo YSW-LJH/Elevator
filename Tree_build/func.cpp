@@ -18,6 +18,10 @@ void _delete();
 
 map<string, string> call(string path)
 {
+	string out_path = path + "\\out";
+	string cmd = "mkdir " + out_path;
+	system(cmd.c_str());
+
 	map<string, string>result;
 	vector<string>files;
 	getFiles(path, files);
@@ -28,7 +32,7 @@ map<string, string> call(string path)
 		floor_verify();
 		floor_compare_main();
 		door_main();
-		Data_Restore(path + "\\out" + file.substr(file.rfind('\\'), file.length() - file.rfind('\\')));
+		Data_Restore(out_path + file.substr(file.rfind('\\'), file.length() - file.rfind('\\')));
 	}
 	result = file_first->Signal;
 	//print(filename);
