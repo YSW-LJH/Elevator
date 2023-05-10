@@ -10,7 +10,7 @@ namespace App;
 
 public partial class MainWindow
 {
-    [DllImport("CS调用链接库.dll", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("Resources\\CS调用链接库.dll", CallingConvention = CallingConvention.Cdecl)]
     public static extern IntPtr Signal_Function(string path);
     //Page_1
     private async void SelectPathButton_Click(object sender, RoutedEventArgs e)
