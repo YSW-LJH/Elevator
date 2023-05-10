@@ -13,6 +13,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="CS调用链接库.dll" />
+    <None Remove="Resources\CS调用链接库.dll" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="CS调用链接库.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <EmbeddedResource Include="Resources\CS调用链接库.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 
@@ -55,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
