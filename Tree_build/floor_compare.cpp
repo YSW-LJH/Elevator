@@ -35,20 +35,14 @@ void floor_splite()
 			file_data[i]->exist_floor[pos - 1] = 1;
 			continue;
 		}
-		//楼层标签发生变化，判断下一个或下下一个楼层标签与当前的是否相同，相同则认为楼层变化
-		for (int j = i + 1, flag = 0; j < file_data.size(); j++)
+		//楼层标签发生变化，判断下一个是否与pos相同，相同则认为楼层不变
+		for (int j = i + 1; j < file_data.size(); j++)
 		{
 			if (file_data[j]->status[0] == 0)
 				continue;
-			if (file_data[j]->status[0] == file_data[i]->status[0])
-			{
+			if (file_data[j]->status[0] != pos)
 				pos = file_data[i]->status[0];
-				break;
-			}
-			else
-				flag++;
-			if (flag == 2)
-				break;
+			break;
 		}
 		floor_data[pos - 1].data.push_back(file_data[i]);
 		file_data[i]->exist_floor[pos - 1] = 1;

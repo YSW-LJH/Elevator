@@ -6,40 +6,47 @@ extern Data_Root* root_now;
 extern File_Data* file_first;
 extern File_Data* file_now;
 
-
-void format(int* data, char* buff, int& flag);//十六进制字符转换为数字
-void getFiles(string path, vector<string>& files);//获取路径下所有*.txt文件
 static void print(string& filename);//输出函数
 static void print_a(string filename);
 static void print_b(string filename);
 static void print_c(string filename);
 static void file_process(string filename);//文件处理
+
+void format(int* data, char* buff, int& flag);//将一行数据转换为数组
+int HString2int(string str);//十六进制字符串转数字
+string int2HString(int num);//数字转十六进制字符串
+string int2HString(int num, int size);//数字转十六进制字符串,设置最小长度，不足用0补充
+vector<string> string_splite(const string str, const char* spl);//字符串分割
+void getFiles(string path, vector<string>& files);//获取路径下所有*.txt文件
 void _delete();
 
-map<string, string> call(string path)
+map<string, map<string,string>> call(string path)
 {
 	string out_path = path + "\\out";
 	string cmd = "mkdir " + out_path;
 	system(cmd.c_str());
-
-	map<string, string>result;
 	vector<string>files;
 	getFiles(path, files);
-	for (auto file : files)
+	for (auto& file : files)
 	{
 		tree_main(file);
-		floor_main();
-		floor_verify();
-		floor_compare_main();
-		door_main();
+		//只有在楼层大于2时才分析特征信号
+		if (file_now->Floor_height > 2)
+		{
+			floor_main();
+			floor_compare_main();
+			door_main();
+		}
 		Data_Restore(out_path + file.substr(file.rfind('\\'), file.length() - file.rfind('\\')));
 	}
-	result = file_first->Signal;
 	//print(filename);
+	Data_Combine();
+	map<string, map<string, string>>result = file_first->Signal;
 	_delete();
 	return result;
 }
-void format(int* data, char* buff, int& flag)//将一行数据转换为数组
+//将一行数据转换为数组
+void format(int* data, char* buff, int& flag)
 {
 	for (int i = 0; i < SIZE && buff[i] != 0; )
 	{
@@ -54,7 +61,7 @@ void format(int* data, char* buff, int& flag)//将一行数据转换为数组
 			data_temp <<= 4;
 			if (buff[i] <= '9')
 				data_temp += buff[i] - '0';
-			else if (buff[i] <= 'Z')
+			else if (buff[i] <= 'F')
 				data_temp += buff[i] - 'A' + 10;
 			else
 				data_temp += buff[i] - 'a' + 10;
@@ -66,6 +73,88 @@ void format(int* data, char* buff, int& flag)//将一行数据转换为数组
 			break;
 	}
 }
+//十六进制字符串转数字
+int HString2int(string str)
+{
+	int num = 0;
+	for (int i = 0; i < str.size(); i++)
+	{
+		num <<= 4;
+		if (str[i] >= '0' && str[i] <= '9')
+			num += str[i] - '0';
+		else if (str[i] >= 'A' && str[i] <= 'F')
+			num += str[i] - 'A' + 10;
+		else if (str[i] >= 'a' && str[i] <= 'f')
+			num += str[i] - 'a' + 10;
+		else
+		{
+			num >>= 4;
+			break;
+		}
+	}
+	return num;
+}
+//数字转十六进制字符串
+string int2HString(int num)
+{
+	string str = "";
+	char a;
+	int b = 0;
+	do
+	{
+		b = num % 16;
+		if (b < 10)
+			a = '0' + b;
+		else
+			a = 'A' + b - 10;
+		str.insert(0, 1, a);
+		num /= 16;
+	} while (num > 0);
+	return str;
+}
+//数字转十六进制字符串,设置最小长度，不足用0补充
+string int2HString(int num,int size)
+{
+	string str = "";
+	char a;
+	int b = 0;
+	do
+	{
+		b = num % 16;
+		if (b < 10)
+			a = '0' + b;
+		else
+			a = 'A' + b - 10;
+		str.insert(0, 1, a);
+		num /= 16;
+	} while (num > 0);
+	if (str.size() < size)
+		str.insert(0, size - str.size(), '0');
+	return str;
+}
+//字符串分割
+vector<string> string_splite(const string str,const char*spl)
+{
+	vector<string>result;
+	size_t pos_1 = 0;
+	size_t pos_2 = 0;
+	string temp;
+	while (1)
+	{
+		pos_2 = str.find(spl, pos_1);
+		if (pos_2 == str.npos)
+		{
+			temp = str.substr(pos_1);
+			result.push_back(temp);
+			break;
+		}
+		temp = str.substr(pos_1, pos_2 - pos_1);
+		result.push_back(temp);
+		pos_1 = pos_2 + 1;
+	}
+	return result;
+}
+//获取目录下文件
 void getFiles(string path, vector<string>& files)
 {
 	intptr_t hFile = 0;

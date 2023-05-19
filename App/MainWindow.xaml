@@ -10,66 +10,100 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
-    <Grid>
-        <muxc:TabView IsAddTabButtonVisible="False">
-            <!-- 第一页 -->
-            <muxc:TabViewItem Header="Signal Analyse" IsClosable="False" HorizontalContentAlignment="Center">
-                <StackPanel Margin="20 20 20 20">
-                    <TextBlock Text="Folder Path:" FontWeight="Bold"/>
+    <muxc:TabView IsAddTabButtonVisible="False">
+        <!-- 第一页 -->
+        <muxc:TabViewItem Header="Signal Analyse" IsClosable="False" HorizontalContentAlignment="Center">
+            <StackPanel Margin="20 20 20 20">
+                <TextBlock Text="Folder Path:" FontWeight="Bold"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="FolderPathTextBox_Page1_1" Grid.Column="0"/>
+                    <Button Grid.Column="1" Content="Select Path" Click="SelectPathButton_Click"/>
+                    <Button Grid.Column="2" Content="Enter" Click="EnterButton_Click_Page1_1"/>
+                </Grid>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <TextBlock Text="Floor Signal:" Width="150" Margin="0,0,20,0" FontWeight="Bold"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBox x:Name="FolderPathTextBox_Page1_1" Grid.Column="0"/>
-                        <Button Grid.Column="1" Content="Select Path" Click="SelectPathButton_Click"/>
-                        <Button Grid.Column="2" Content="Enter" Click="EnterButton_Click_Page1_1"/>
-                    </Grid>
-                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                        <TextBlock Text="Floor Signal:" Width="150" Margin="0,0,20,0" FontWeight="Bold"/>
-                        <TextBlock x:Name="FloorSignalTextBox" Text="N/A" Width="400"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                        <TextBlock Text="Door Signal:" Width="150" Margin="0,0,20,0" FontWeight="Bold"/>
-                        <TextBlock x:Name="DoorSignalTextBox" Text="N/A" Width="400"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                        <TextBlock Text="Run Signal:" Width="150" Margin="0,0,20,0" FontWeight="Bold"/>
-                        <TextBlock x:Name="RunSignalTextBox" Text="N/A" Width="400"/>
-                    </StackPanel>
-                </StackPanel>
-            </muxc:TabViewItem>
-
-            <!-- 第二页 -->
-            <muxc:TabViewItem Header="Data Analyse" IsClosable="False" HorizontalContentAlignment="Center">
-                <StackPanel Margin="20">
-                    <TextBlock Text="Data File Path:" FontWeight="Bold"/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="DataFilePathTextBox" Grid.Column="0"/>
-                        <Button Grid.Column="1" Content="Select Path" Click="SelectFileButton_Click"/>
-                        <Button Grid.Column="2" Content="Enter" Click="EnterButton_Click_Page2_1"/>
+                        <TextBlock x:Name="FloorSignalTextBox_IDaBit" Grid.Column="1" Text="N/A" Width="100"/>
+                        <TextBlock x:Name="FloorSignalTextBox_Pos" Grid.Column="2" Width="50"/>
+                        <TextBlock x:Name="FloorSignalTextBox_Range" Grid.Column="3" Width="50"/>
+                        <TextBlock x:Name="FloorSignalTextBox_Increment" Grid.Column="4" Width="200"/>
                     </Grid>
-                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                        <TextBlock Text="A1:" Width="150" Margin="0,0,20,0" FontWeight="Bold" HorizontalTextAlignment="Right"/>
-                        <ComboBox x:Name="A1ComboBox" ItemsSource="{x:Bind DataSelect_value.Keys}"  Width="150" Margin="0,0,20,0" SelectedIndex="0" SelectionChanged="A1ComboBox_SelectionChanged"/>
-                        <TextBlock Text="A2:" Width="150" Margin="0,0,20,0" FontWeight="Bold" HorizontalTextAlignment="Right"/>
-                        <ComboBox x:Name="A2ComboBox" ItemsSource="{x:Bind DataSelect_value.Keys}" Width="150" Margin="0,0,20,0" SelectedIndex="0" SelectionChanged="A2ComboBox_SelectionChanged"/>
-                        <TextBlock Text="A3:" Width="150" Margin="0,0,20,0" FontWeight="Bold" HorizontalTextAlignment="Right"/>
-                        <ComboBox x:Name="A3ComboBox" ItemsSource="{x:Bind DataSelect_value.Keys}" Width="150" SelectedIndex="0" SelectionChanged="A3ComboBox_SelectionChanged"/>
-                    </StackPanel>
-                    <StackPanel Margin="0,20,0,0">
-                        <TextBlock Text="Filter Result:" FontWeight="Bold"/>
-                        <TextBox x:Name="FilterResultTextBox" IsReadOnly="True"/>
-                    </StackPanel>
                 </StackPanel>
-            </muxc:TabViewItem>
-        </muxc:TabView>
-    </Grid>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="Door Signal:" Width="150" Margin="0,0,20,0" FontWeight="Bold"/>
+                    <TextBlock x:Name="DoorSignalTextBox" Text="N/A" Width="400"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="Run Signal:" Width="150" Margin="0,0,20,0" FontWeight="Bold"/>
+                    <TextBlock x:Name="RunSignalTextBox" Text="N/A" Width="400"/>
+                </StackPanel>
+            </StackPanel>
+        </muxc:TabViewItem>
 
+        <!-- 第二页 -->
+        <muxc:TabViewItem Header="Data Analyse" IsClosable="False" HorizontalContentAlignment="Center">
+            <StackPanel Margin="20">
+                <TextBlock Text="Data File Path:" FontWeight="Bold"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="DataFilePathTextBox_Page2_1" Grid.Column="0"/>
+                    <Button Grid.Column="1" Content="Select Path" Click="SelectFileButton_Click"/>
+                    <Button Grid.Column="2" Content="Enter" Click="EnterButton_Click_Page2_1"/>
+                </Grid>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <TextBlock Text="设置选取数的个数：" Width="150" Margin="0,0,20,0" FontWeight="Bold" HorizontalAlignment="Left"/>
+                    <Slider x:Name="Select_Num" Width="300" TickFrequency="1" HorizontalAlignment="Left" TickPlacement="Outside" Maximum="4" Minimum="0" ValueChanged="Select_Num_Changed"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <TextBlock Text="A1:" Width="50" Margin="0,0,20,0" FontWeight="Bold" HorizontalTextAlignment="Right"/>
+                    <ComboBox x:Name="A1ComboBox" ItemsSource="{x:Bind DataSelect_value.Keys}" Width="80" Margin="0,0,20,0" SelectedIndex="0" IsEnabled="False" SelectionChanged="A1ComboBox_SelectionChanged"/>
+                    <TextBlock Text="A2:" Width="50" Margin="0,0,20,0" FontWeight="Bold" HorizontalTextAlignment="Right"/>
+                    <ComboBox x:Name="A2ComboBox" ItemsSource="{x:Bind DataSelect_value.Keys}" Width="80" Margin="0,0,20,0" SelectedIndex="0" IsEnabled="False" SelectionChanged="A2ComboBox_SelectionChanged"/>
+                    <TextBlock Text="A3:" Width="50" Margin="0,0,20,0" FontWeight="Bold" HorizontalTextAlignment="Right"/>
+                    <ComboBox x:Name="A3ComboBox" ItemsSource="{x:Bind DataSelect_value.Keys}" Width="80" Margin="0,0,20,0" SelectedIndex="0" IsEnabled="False" SelectionChanged="A3ComboBox_SelectionChanged"/>
+                    <TextBlock Text="A4:" Width="50" Margin="0,0,20,0" FontWeight="Bold" HorizontalTextAlignment="Right"/>
+                    <ComboBox x:Name="A4ComboBox" ItemsSource="{x:Bind DataSelect_value.Keys}" Width="80" Margin="0,0,20,0" SelectedIndex="0" IsEnabled="False" SelectionChanged="A4ComboBox_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Margin="0,20,0,0">
+                    <TextBlock Text="Filter Result:" FontWeight="Bold"/>
+                    <TextBox x:Name="FilterResultTextBox" IsReadOnly="True"/>
+                </StackPanel>
+            </StackPanel>
+        </muxc:TabViewItem>
+        <!-- 第三页 -->
+        <muxc:TabViewItem Header="Data Formate" IsClosable="False" HorizontalContentAlignment="Center">
+            <StackPanel Margin="20">
+                <TextBlock Text="Data File Path:" FontWeight="Bold"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="DataFilePathTextBox_Page3_1" Grid.Column="0"/>
+                    <Button Grid.Column="1" Content="Select Path" Click="SelectFileButton_Click"/>
+                    <Button Grid.Column="2" Content="Enter" Click="EnterButton_Click_Page3_1"/>
+                </Grid>
+                <StackPanel Margin="0,20,0,0">
+                    <TextBlock Text="Formate Result:" FontWeight="Bold"/>
+                    <TextBox x:Name="FormateResultTextBox" IsReadOnly="True"/>
+                </StackPanel>
+            </StackPanel>
+        </muxc:TabViewItem>
+    </muxc:TabView>
 </Window>

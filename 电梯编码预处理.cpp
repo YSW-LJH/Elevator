@@ -6,7 +6,7 @@ import Main_process;
 import Percent;
 import Formate;
 using namespace std;
-
+//本来用于CMD函数调用，后来做了界面，暂时不用
 int main()
 {
 	return 0;

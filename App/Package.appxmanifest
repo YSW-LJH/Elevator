@@ -8,7 +8,7 @@
 
   <Identity
     Name="553e0fb0-a956-4ca2-8819-abe9ddf843f3"
-    Publisher="CN=YSW"
+    Publisher="CN=YSW-Elevator"
     Version="1.0.0.0" />
 
   <Properties>

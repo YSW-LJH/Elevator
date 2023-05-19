@@ -11,6 +11,7 @@
 #include <list>
 #include <sstream>
 #include <map>
+#include <cmath>
 //#include <stdafx.h>
 
 #define SIZE 200 //一行数据的字符数
@@ -26,7 +27,11 @@ using namespace std;
 #include <door.h>
 #include <floor_compare.h>
 
-map<string,string> call(string path);//调用接口
-void format(int* data, char* buff, int& flag);//十六进制字符转换为数字
+map<string,map<string,string>> call(string path);//调用接口
+void format(int* data, char* buff, int& flag);//将一行数据转换为数组
+int HString2int(string str);//十六进制字符串转数字
+string int2HString(int num);//数字转十六进制字符串
+string int2HString(int num, int size);//数字转十六进制字符串,设置最小长度，不足用0补充
+vector<string> string_splite(const string str, const char* spl);//字符串分割
 void getFiles(string path, vector<string>& files);//获取路径下所有*.txt文件
 void _delete();

@@ -39,13 +39,32 @@ extern "C" __declspec(dllexport) void Percent_Function(const char* path)
 //主要函数，信号分析，根据路径下的文件计算楼层信号、门信号、运行信号，以及一些数据特征等。
 extern "C" __declspec(dllexport)const char* Signal_Function(const char* path)
 {
-	map<string, string> a = Signal_Analyse(path);
-	string b = "";
-	b += a["Floor"];
-	b += "{Splite}";
-	b += a["Door"];
-	b += "{Splite}";
-	b += a["Run"];
+	map<string, map<string,string>> a = Signal_Analyse(path);
+	string b = "ID&Bit:\n";
+	b += a["Floor"]["ID&Bit"] + "\n";
+	b += "{floor}";
+	b += "Pos:\n";
+	b += a["Floor"]["Pos"] + "\n";
+	b += "{floor}";
+	b += "Range:\n";
+	b += a["Floor"]["Range"] + "\n";
+	b += "{floor}";
+	b += "Increment:\n";
+	b += a["Floor"]["Increment"];
+	//
+	b += "{Splite}Open:\n";
+	b += a["Door"]["Open"] + "\n";
+	b += "Run_O:\n";
+	b += a["Door"]["Run_O"] + "\n";
+	b += "Run_C:\n";
+	b += a["Door"]["Run_C"] + "\n";
+	b += "Close:\n";
+	b += a["Door"]["Close"];
+	//
+	b += "{Splite}Up:\n";
+	b += a["Run"]["Up"] + "\n";
+	b += "Down:\n";
+	b += a["Run"]["Down"];
 	return _strdup(b.c_str());
 }
 
