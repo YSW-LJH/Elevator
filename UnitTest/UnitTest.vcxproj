@@ -179,6 +179,9 @@
     <ProjectReference Include="..\Tree_build\Tree_build.vcxproj">
       <Project>{afef6b3b-84cd-448c-913a-5aef86c06d09}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\文本文件处理\文本文件处理.vcxproj">
+      <Project>{5ee8a10e-3a4c-4a3f-bc59-4ba7a2ea265c}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

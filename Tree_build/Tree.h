@@ -32,9 +32,19 @@ typedef struct _File_Data
 	//记录上行还是下行,true上行,false下行
 	bool direction = true;
 	//记录每层楼数据
-	_Floor_Data* floor_data;
+	_Floor_Data* floor_data = NULL;
 	//记录查找到的信号
-	map<string, string>Signal = { {"Floor",""},{"Door",""},{"Run",""} };
+	map<string, map<string, string>>Signal = {
+		{"Floor",{
+			{"ID&Bit",""},{"Pos",""},{"Range",""},{"Increment",""},{"Pre_size",""}
+	}},
+		{"Door",{
+			{"Open",""},{"Run_O",""},{"Run_C",""},{"Close",""}
+	}},
+		{"Run",{
+			{"Up",""},{"Down",""}
+	}}
+	};
 }File_Data;
 
 //用于记录ID的结构体
@@ -54,6 +64,23 @@ typedef struct _Data_Root
 	_Data_Root* next = NULL;
 	_Data_Root* pre = NULL;
 	_File_Data* file = NULL;
+	//运算符重载
+	bool operator>(const _Data_Root& k)const
+	{
+		return (ID > k.ID);
+	}
+	bool operator==(const _Data_Root& k)const
+	{
+		return (ID == k.ID);
+	}
+	//建立新副本并返回指针
+	static _Data_Root* Add(const _Data_Root* k)
+	{
+		_Data_Root* temp = new _Data_Root();
+		temp->count = k->count;
+		temp->ID = k->ID;
+		return temp;
+	}
 }Data_Root;
 
 //用于记录数据的结构体
@@ -81,20 +108,37 @@ typedef struct _Data
 	//统计数据出现的楼层
 	bool exist_floor[0xff] = { 0 };
 	//运算符重载
+	bool operator>(const _Data& k)const
+	{
+		for (int i = 0; i < size; i++)
+			if (com_data[i] == k.com_data[i])
+				continue;
+			else if (com_data[i] > k.com_data[i])
+				return true;
+			else 
+				return false;
+		return false;
+	}
 	bool operator==(const _Data& k)const
 	{
-		if (ID->ID == k.ID->ID)
-		{
-			for (int i = 0; i < DATA_SIZE; i++)
-				if (com_data[i] != k.com_data[i])
-					return false;
-			return true;
-		}
-		return false;
+		for (int i = 0; i < size; i++)
+			if (com_data[i] != k.com_data[i])
+				return false;
+		return true;
+	}
+	//建立新副本并返回指针
+	static _Data* Add(const _Data* k)
+	{
+		_Data* temp = new _Data();
+		for (int i = 0; i < k->size; i++)
+			temp->com_data[i] = k->com_data[i];
+		temp->size = k->size;
+		temp->count = k->count;
+		return temp;
 	}
 }Data;
 
 void tree_main(string file_path);
 void tree_delete();
-void floor_verify();
 void Data_Restore(string out_path);
+void Data_Combine();

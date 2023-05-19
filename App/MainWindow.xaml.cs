@@ -47,10 +47,15 @@ public sealed partial class MainWindow : Window
     Dictionary<string, int> DataSelect_value = new Dictionary<string, int>();
     public void DataSelectValue()
     {
-        DataSelect_value.Add("NULL", -1);
-        for (int i = 0; i < 16; i++)
+        DataSelect_value.Add("N", 0);
+        for (int i = 1; i <= 16; i++)
         {
-            DataSelect_value.Add(i.ToString("X"), i);
+            DataSelect_value.Add(i.ToString(), i);
         }
+    }
+
+    private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+    {
+
     }
 }

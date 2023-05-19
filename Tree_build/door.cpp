@@ -6,14 +6,14 @@ Data* rule_1[3] = { NULL };//顺序：A-B-C-B-A
 Data* rule_2[4] = { NULL };//顺序：A-B-C-D-A
 Floor_Data* floor_data;
 
-bool find_1();
-bool find_2();
+static bool find_1();
+static bool find_2();
 string data_to_string(Data* data);
 
 void door_main()
 {
 	floor_data = file_now->floor_data;
-	string signal = "";
+	map<string, string> signal = { {"Open",""},{"Run_O",""},{"Run_C",""},{"Close",""} };
 	bool flag;
 	flag = find_1();
 	if (!flag)
@@ -21,17 +21,18 @@ void door_main()
 		flag = find_2();
 		if (flag)
 		{
-			signal += "Open: " + data_to_string(rule_2[0]) + '\n';
-			signal += "Run_O: " + data_to_string(rule_2[1]) + '\n';
-			signal += "Run_C: " + data_to_string(rule_2[2]) + '\n';
-			signal += "Close: " + data_to_string(rule_2[3]) + '\n';
+			signal["Open"] = data_to_string(rule_2[0]);
+			signal["Run_O"] = data_to_string(rule_2[1]);
+			signal["Run_C"] = data_to_string(rule_2[2]);
+			signal["Close"] = data_to_string(rule_2[3]);
 		}
 	}
 	else
 	{
-		signal += "Open: " + data_to_string(rule_1[0]) + '\n';
-		signal += "Run: " + data_to_string(rule_1[1]) + '\n';
-		signal += "Close: " + data_to_string(rule_1[2]) + '\n';
+		signal["Open"] = data_to_string(rule_1[0]);
+		signal["Run_O"] = data_to_string(rule_1[1]);
+		signal["Run_C"] = data_to_string(rule_1[1]);
+		signal["Close"] = data_to_string(rule_1[2]);
 	}
 	file_now->Signal["Door"] = signal;
 	return;
@@ -44,8 +45,8 @@ bool find_1()
 	//记录第一个经停（或终点）楼层的数据，并加入前一层楼的数据（经过或起始楼层）
 	Floor_Data data_temp;
 	for (int i = 2; i >= 1; i--)
-		for (int j = 0; j < floor_data[file_now->Floor_pass[1] - i].data.size(); j++)
-			data_temp.data.push_back(floor_data[file_now->Floor_pass[1] - i].data[j]);
+		for (int j = 0; j < floor_data[file_now->Floor_pass[1] - i * (file_now->direction ? 1 : -1)].data.size(); j++)
+			data_temp.data.push_back(floor_data[file_now->Floor_pass[1] - i * (file_now->direction ? 1 : -1)].data[j]);
 	Floor_Data* data = &data_temp;
 	//记录经停及终点楼层，初始化为 false
 	bool* flag = new bool[height];
@@ -168,8 +169,8 @@ bool find_2()
 	//记录第一个经停（或终点）楼层的数据，并加入前一层楼的数据（经过或起始楼层）
 	Floor_Data data_temp;
 	for (int i = 2; i >= 1; i--)
-		for (int j = 0; j < floor_data[file_now->Floor_pass[1] - i].data.size(); j++)
-			data_temp.data.push_back(floor_data[file_now->Floor_pass[1] - i].data[j]);
+		for (int j = 0; j < floor_data[file_now->Floor_pass[1] - i * (file_now->direction ? 1 : -1)].data.size(); j++)
+			data_temp.data.push_back(floor_data[file_now->Floor_pass[1] - i * (file_now->direction ? 1 : -1)].data[j]);
 	Floor_Data* data = &data_temp;
 	//记录经停及终点楼层，初始化为 false
 	bool* flag = new bool[height];
@@ -314,21 +315,17 @@ bool find_2()
 //把Data->com_data数据转换为字符串
 string data_to_string(Data* data)
 {
-	char hexx[16];
-	for (int i = 0; i < 16; i++)
-		if (i < 10)
-			hexx[i] = '0' + i;
-		else
-			hexx[i] = 'A' + i - 10;
-	string temp = "";
-	for (int id = data->ID->ID; id > 0; id /= 16)
-		temp.insert(0, 1, hexx[id % 16]);
-	temp += ' ';
+	string temp = int2HString(data->ID->ID);
+	if (temp.size() < 3)
+		temp.insert(0, 3 - temp.size(), '0');		
+	temp += " ";
 	for (int i = 0; i < data->size; i++)
 	{
-		temp.insert(temp.size(), 1, hexx[data->com_data[i] / 16]);
-		temp.insert(temp.size(), 1, hexx[data->com_data[i] % 16]);
-		temp += ' ';
+		string hexx = int2HString(data->com_data[i]);
+		if (hexx.size() < 2)
+			hexx.insert(0, 2 - hexx.size(), '0');
+		temp += hexx;
+		temp += " ";
 	}
 	return temp;
 }
