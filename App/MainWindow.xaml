@@ -67,11 +67,11 @@
                 </Grid>
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                     <TextBlock Text="设置选取数的个数：" Width="150" Margin="0,0,20,0" FontWeight="Bold" HorizontalAlignment="Left"/>
-                    <Slider x:Name="Select_Num" Width="300" TickFrequency="1" HorizontalAlignment="Left" TickPlacement="Outside" Maximum="4" Minimum="0" ValueChanged="Select_Num_Changed"/>
+                    <Slider x:Name="Select_Num" Width="300" TickFrequency="1" HorizontalAlignment="Left" TickPlacement="Outside" Maximum="4" Minimum="1" ValueChanged="Select_Num_Changed"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                     <TextBlock Text="A1:" Width="50" Margin="0,0,20,0" FontWeight="Bold" HorizontalTextAlignment="Right"/>
-                    <ComboBox x:Name="A1ComboBox" ItemsSource="{x:Bind DataSelect_value.Keys}" Width="80" Margin="0,0,20,0" SelectedIndex="0" IsEnabled="False" SelectionChanged="A1ComboBox_SelectionChanged"/>
+                    <ComboBox x:Name="A1ComboBox" ItemsSource="{x:Bind DataSelect_value.Keys}" Width="80" Margin="0,0,20,0" SelectedIndex="0" IsEnabled="True" SelectionChanged="A1ComboBox_SelectionChanged"/>
                     <TextBlock Text="A2:" Width="50" Margin="0,0,20,0" FontWeight="Bold" HorizontalTextAlignment="Right"/>
                     <ComboBox x:Name="A2ComboBox" ItemsSource="{x:Bind DataSelect_value.Keys}" Width="80" Margin="0,0,20,0" SelectedIndex="0" IsEnabled="False" SelectionChanged="A2ComboBox_SelectionChanged"/>
                     <TextBlock Text="A3:" Width="50" Margin="0,0,20,0" FontWeight="Bold" HorizontalTextAlignment="Right"/>

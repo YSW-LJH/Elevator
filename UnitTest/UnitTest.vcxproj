@@ -77,7 +77,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Tree_build;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)x64\Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -95,7 +94,6 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;D:\Code\Elevator\Tree_build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -178,6 +176,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Tree_build\Tree_build.vcxproj">
       <Project>{afef6b3b-84cd-448c-913a-5aef86c06d09}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\数据筛选\数据筛选.vcxproj">
+      <Project>{ab73de5b-bca7-46ef-b289-d1114692d8eb}</Project>
     </ProjectReference>
     <ProjectReference Include="..\文本文件处理\文本文件处理.vcxproj">
       <Project>{5ee8a10e-3a4c-4a3f-bc59-4ba7a2ea265c}</Project>

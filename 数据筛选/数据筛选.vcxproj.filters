@@ -21,5 +21,8 @@
     <ClCompile Include="Data_Sift.h">
       <Filter>头文件</Filter>
     </ClCompile>
+    <ClCompile Include="interface.ixx">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
