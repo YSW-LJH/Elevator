@@ -94,6 +94,7 @@ typedef struct _Data
 	int size = 0;
 	//统计相同数据出现的次数
 	int count = 1;
+	//标签，楼层、门等
 	vector<int> tag_all;
 	vector<int>::iterator tag_each;
 	//指针，指向前一个元素、后一个元素以及ID

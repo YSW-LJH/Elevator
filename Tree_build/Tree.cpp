@@ -387,6 +387,7 @@ void Data_Combine()
 			{
 				total->ID_num++;
 				root_now = Data_Root::Add(cur_root);
+				root_now->file = total;
 				if (root_flag == NULL)
 					total->tree_root = root_now;
 				else
@@ -406,6 +407,7 @@ void Data_Combine()
 				total->ID_num++;
 				Data_Root* temp = root_now->pre;
 				root_now->pre = Data_Root::Add(cur_root);
+				root_now->file = total;
 				root_now->pre->next = root_now;
 				if (temp)
 					temp->next = root_now->pre;
@@ -430,6 +432,7 @@ void Data_Combine()
 				{
 					root_now->total_type++;
 					data_now = Data::Add(cur_data);
+					data_now->ID = root_now;
 					if (data_flag == NULL)
 						root_now->child = data_now;
 					else
@@ -449,6 +452,7 @@ void Data_Combine()
 					root_now->total_type++;
 					Data* temp = data_now->pre;
 					data_now->pre = Data::Add(cur_data);
+					data_now->ID = root_now;
 					data_now->pre->next = data_now;
 					if (temp)
 						temp->next = data_now->pre;

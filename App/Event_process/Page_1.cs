@@ -16,13 +16,13 @@ public partial class MainWindow
         string path = FolderPathTextBox_Page1_1.Text;
         if(!Directory.Exists(path))
         {
-            ContentDialog DataSelect_warning = new ContentDialog
+            ContentDialog DataSelect_warning = new()
             {
                 Title = "WARNING",
                 Content = "Path Does Not Exist !",
                 CloseButtonText = "OK",
+                XamlRoot = this.Content.XamlRoot
             };
-            DataSelect_warning.XamlRoot = this.Content.XamlRoot;
             await DataSelect_warning.ShowAsync();
             A1ComboBox.SelectedIndex = 0;
             FolderPathTextBox_Page1_1.Text = null;
