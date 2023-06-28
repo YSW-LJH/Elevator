@@ -15,6 +15,8 @@ public partial class MainWindow
     }
     public void Select_Num_Changed(object sender, RoutedEventArgs e)
     {
+        if (A1ComboBox == null)
+            return;
         A1ComboBox.IsEnabled = Select_Num.Value > 0;
         A2ComboBox.IsEnabled = Select_Num.Value > 1;
         A3ComboBox.IsEnabled = Select_Num.Value > 2;

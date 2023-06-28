@@ -17,6 +17,25 @@ static void Raw_print(map<string, map<long long, vector<int>>> data, string path
 //记录结果,<ID+Bn+有效数据长度，有效数据位>
 map<long long, vector<int>> valid_data;
 
+//int main()
+//{
+//	string path;
+//	int pre;
+//	cout << "输入文件夹路径：\n";
+//	cin >> path;
+//	cout << "输入前置字节长度（0~2）\n";
+//	cin >> pre;
+//	string cmd;
+//	string path_temp = path;
+//	path_temp.append("\\out");
+//	cmd = "mkdir " + path_temp;
+//	system(cmd.c_str());
+//	Data_Sift_main(path, pre, 0);
+//	cout << "程序结束，输入任意字符结束\n";
+//	cin >> path;
+//	return 0;
+//}
+
 void Data_Sift_main(string path, const int pre, const int sel)
 {
 	valid_data.clear();

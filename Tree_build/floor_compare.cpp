@@ -49,36 +49,6 @@ void floor_splite()
 	}
 	file_now->floor_data = floor_data;
 }
-void floor_compare()
-{
-	vector<Data> all;
-
-}
-void test()
-{
-	int count[8] = { 0 };
-	int type[8] = { 0 };
-	int temp[8] = { 0 };
-	memset(temp, -1, sizeof(temp));
-	bool exist[8][256] = { false };
-	memset(exist, false, sizeof(exist));
-	for (auto data : file_now->data)
-	{
-		if (data->ID->ID == 8)
-			for (int i = 0; i < 8; i++)
-				if (data->com_data[i] != temp[i])
-				{
-					temp[i] = data->com_data[i];
-					count[i]++;
-					if (exist[i][temp[i]] == false)
-					{
-						exist[i][temp[i]] = true;
-						type[i]++;
-					}
-				}
-	}
-}
-
 void floor_compare_delete(Floor_Data*floor_data)
 {
 	if (floor_data != NULL)
